@@ -25,7 +25,7 @@ void draw_board() {
     }
   }
   
-  stroke(80);
+  stroke(85);
   strokeWeight(2);
   line(100, 100, 100, 900);
   line(100, 100, 900, 100);
