@@ -1,6 +1,6 @@
 # Update Log
 
-## **v1.0** - April 5, 2023
+### **v1.0** - April 5, 2023
 
 - Intialized the files that we will be working on for the next few months!
 - Updated README.md to provide a more detailed explanation
