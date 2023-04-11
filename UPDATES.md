@@ -7,6 +7,6 @@
 - Created UPDATES.md in order to provide an update log (as per the final project requirements)
 
 April 11, 2023
-- Jeremy attempted Processing
-- Nathan is doing art
-- Jovian is doing the main Menu
+- Jeremy is learning Processing
+- Nathan is making character pixel art for the game
+- Main Menu is currently being built by Jovian
