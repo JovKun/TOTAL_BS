@@ -1,8 +1,12 @@
 int buttonWidth = 750;
 int buttonHeight = 100;
 
+PFont font;
+
 void setup() {
-  fullScreen(); 
+  fullScreen();
+  
+  font = createFont("font.ttf", 64);
 }
 
 void draw() {
@@ -14,6 +18,8 @@ void draw() {
   rect(width / 2 - buttonWidth / 2, height / 2 - buttonHeight / 2 + 300, buttonWidth, buttonHeight);
   
   fill(255);
-  textSize(50);
-  text("This is a button", width / 2 - 200, height / 2 - 10);
+  textFont(font);
+  text("PLAY", width / 2 - 85, height / 2 + 18);
+  text("SETTINGS", width / 2 - 150, height / 2 + 168);
+  text("CREDITS", width / 2 - 132, height / 2 + 318);
 }
