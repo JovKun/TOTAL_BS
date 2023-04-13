@@ -4,6 +4,8 @@
 - Jeremy is learning Processing
 - Nathan is making character pixel art for the game
 - Main Menu is currently being built by Jovian
+  - Buttons are built
+  - Fonts are made
 
 ### **v1.0** - April 5, 2023
 - Intialized the files that we will be working on for the next few months!
