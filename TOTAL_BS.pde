@@ -3,10 +3,14 @@ int buttonHeight = 100;
 
 PFont font;
 
+PImage mage_standing;
+
 void setup() {
   fullScreen();
   
   font = createFont("font.ttf", 64);
+  
+  mage_standing = loadImage("mage_standing.png");
 }
 
 void draw() {
@@ -22,4 +26,7 @@ void draw() {
   text("PLAY", width / 2 - 85, height / 2 + 18);
   text("SETTINGS", width / 2 - 150, height / 2 + 168);
   text("CREDITS", width / 2 - 132, height / 2 + 318);
+  
+  image(mage_standing, 50, 50, 150, 150);
+  
 }
