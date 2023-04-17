@@ -1,5 +1,10 @@
 # Update Log
 
+### **v1.2** - April 17, 2023
+- Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged.
+- Jovian imported the initial character files and drew a single character to the screen
+- Nathan will re-do the pixel art at a higher resolution in an attempt to preserve the resolution when enlarged,
+
 ### **v1.1** - April 11, 2023
 - Jeremy is learning Processing
 - Nathan is making character pixel art for the game
