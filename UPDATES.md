@@ -1,5 +1,10 @@
 # Update Log
 
+### **v1.3** - April 19, 2023
+- Jovian created the basis of the Character class
+  - Created sub-classes, such as Mage, Archer, and Knight
+  - Created the method `takeDamage`
+
 ### **v1.2** - April 17, 2023
 - Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged.
 - Jovian imported the initial character files and drew a single character to the screen
