@@ -11,6 +11,8 @@ void setup() {
   font = createFont("font.ttf", 64);
   
   mage_standing = loadImage("mage_standing.png");
+  
+  imageMode(CENTER);
 }
 
 void draw() {
