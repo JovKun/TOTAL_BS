@@ -1,7 +1,7 @@
 # Update Log
 
 ### **v1.4** - April 25, 2023
-- Nathan uploaded the resized pixil images.
+- Nathan uploaded the resized pixil images from 50 x 50 to 500 x 500.
 
 ### **v1.3** - April 19, 2023
 - Jovian created the basis of the Character class
