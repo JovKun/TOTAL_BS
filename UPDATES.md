@@ -1,5 +1,8 @@
 # Update Log
 
+### **v1.4** - April 25, 2023
+- Nathan uploaded the resized pixil images.
+
 ### **v1.3** - April 19, 2023
 - Jovian created the basis of the Character class
   - Created sub-classes, such as Mage, Archer, and Knight
