@@ -1,4 +1,8 @@
 # Update Log
+### **v1.5** - April 27, 2023
+- Nathan adjusted the in-game character size to adapt to monitor
+  - Added 8k background image to the main screen.
+- Jovian rounded off buttons 
 
 ### **v1.4** - April 25, 2023
 - Nathan replaced the resized pixel characters from 50 x 50 px to 500 x 500 px.
