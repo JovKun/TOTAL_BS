@@ -1,11 +1,13 @@
 # Update Log
 ### **v1.5** - April 27, 2023
 - Nathan adjusted the in-game character size to adapt to monitor
-  - Added 8k background image to the main screen.
-- Jovian rounded off buttons 
+  - Added 8k background image to the main screen
+- Jovian rounded off buttons
+- Jovian switched the characters to objects
+- Jeremy did some work on the button hover mechanic
 
 ### **v1.4** - April 25, 2023
-- Nathan replaced the resized pixel characters from 50 x 50 px to 500 x 500 px.
+- Nathan replaced the resized pixel characters from 50 x 50 px to 500 x 500 px
 
 ### **v1.3** - April 19, 2023
 - Jovian created the basis of the Character class
@@ -13,10 +15,10 @@
   - Created the method `takeDamage`
 
 ### **v1.2** - April 17, 2023
-- Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged.
+- Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged
 - Jovian imported the initial character files and drew a single character to the screen
-- Nathan will re-do the pixel art at a higher resolution in an attempt to preserve the resolution when enlarged.
-- Jeremy is currently attempting to create a hover system for the button, and will later attempt to create a clicking system.
+- Nathan will re-do the pixel art at a higher resolution in an attempt to preserve the resolution when enlarged
+- Jeremy is currently attempting to create a hover system for the button, and will later attempt to create a clicking system
 
 ### **v1.1** - April 11, 2023
 - Jeremy is learning Processing
