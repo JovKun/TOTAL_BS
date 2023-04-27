@@ -3,18 +3,19 @@ int buttonHeight = 100;
 
 PFont font;
 
-PImage mage_standing;
 PImage main_screen_art;
+
+Mage player_1;
 
 void setup() {
   fullScreen();
   
   font = createFont("font.ttf", 64);
-  
-  mage_standing = loadImage("mage_standing.v2.png");
   main_screen_art = loadImage("main_screen_art.png");
   
   imageMode(CENTER);
+  
+  player_1 = new Mage(200, 200);
 }
 
 void draw() {
@@ -31,5 +32,5 @@ void draw() {
   text("SETTINGS", width / 2 - 150, height / 2 + 168);
   text("CREDITS", width / 2 - 132, height / 2 + 318);
   
-  image(mage_standing, 200, 200, height / 6, height / 6);
+  player_1.display();
 }

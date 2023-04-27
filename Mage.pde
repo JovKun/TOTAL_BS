@@ -8,4 +8,10 @@ class Mage extends Character {
     this.projectile = loadImage("mage_projectile.v2.png");
     this.offset = 4;
   }
+  
+  public void display() {
+    if (this.state == "standing") {
+       image(standing, this.characterX, this.characterY, this.characterWidth, this.characterHeight);
+    }
+  }
 }

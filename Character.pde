@@ -1,11 +1,14 @@
 class Character {
-  private int totalHealth, currentHealth;
-  private int attack, attackSpeed;
+  protected int totalHealth, currentHealth;
+  protected int attack, attackSpeed;
   
-  private PImage standing, attacking, running, jumping;
-  private boolean isRange, isDead;
+  protected PImage standing, attacking, running, jumping;
+  protected boolean isRange, isDead;
   
-  private int characterX, characterY;
+  protected int characterX, characterY;
+  protected float characterWidth, characterHeight;
+  
+  protected String state;
   
   public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, boolean isRange, int characterX, int characterY) {
     this.totalHealth = totalHealth;
@@ -23,6 +26,11 @@ class Character {
     
     this.characterX = characterX;
     this.characterY = characterY;
+    
+    this.characterWidth = height / 6;
+    this.characterHeight = height / 6;
+    
+    this.state = "standing";
   }
   
   public void takeDamage(int amount) {
