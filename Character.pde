@@ -24,6 +24,7 @@ class Character {
     this.running = loadImage(running);
     this.jumping = loadImage(jumping);
     this.dead = loadImage(dead);
+    this.dead.filter(GRAY);
     
     this.isRange = isRange;
     this.isDead = false;
