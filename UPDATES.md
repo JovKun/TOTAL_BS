@@ -1,6 +1,8 @@
 # Update Log
 ### **v1.6** - May 1, 2023
 - Nathan added dead characters and enlarged them
+- Jovian implemented the dead characters and made them grayscale
+- Jeremy was resting due to the chem test D:
 
 ### **v1.5** - April 27, 2023
 - Nathan adjusted the in-game character size to adapt to monitor
@@ -15,7 +17,7 @@
 ### **v1.3** - April 19, 2023
 - Jovian created the basis of the Character class
   - Created sub-classes, such as Mage, Archer, and Knight
-  - Created the method `takeDamage`
+  - Started creating character methods
 
 ### **v1.2** - April 17, 2023
 - Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged
