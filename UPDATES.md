@@ -6,7 +6,7 @@
 
 ### **v1.5** - April 27, 2023
 - Nathan adjusted the in-game character size to adapt to monitor
-  - Added 8k background image to the main screen
+- Nathan added a background image to the main screen
 - Jovian rounded off buttons
 - Jovian switched the characters to objects
 - Jeremy did some work on the button hover mechanic
