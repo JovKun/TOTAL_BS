@@ -1,4 +1,7 @@
 # Update Log
+### **v1.6** - May 1, 2023
+- Nathan added dead characters and enlarged them
+
 ### **v1.5** - April 27, 2023
 - Nathan adjusted the in-game character size to adapt to monitor
   - Added 8k background image to the main screen
