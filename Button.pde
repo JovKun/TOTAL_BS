@@ -5,33 +5,39 @@ class Button {
   private int rect_height;
   private String text;
   
-  public Button(int x, int y, int rect_width, int rect_height, String text) {
+  public Button(int x, int y, String text) {
     this.x = x;
     this.y = y;
-    this.rect_width = rect_width;
-    this.rect_height = rect_height;
+    this.rect_width = 750;
+    this.rect_height = 100;
     this.text = text;
   }
   
   public void display() {
     imageMode(CENTER);
     fill(0);
-    rect(this.x, this.y, this.rect_width, this.rect_height, 50, 50, 50, 50);
+    rect(this.x, this.y, this.rect_width, this.rect_height, 10, 10, 10, 10);
     
-  }
-  
-  public void displayText(){
     fill(255);
     textAlign(CENTER, CENTER);
-    text(this.text, x + this.rect_width / 2, y + this.rect_height / 2);
+    text(this.text, this.x + this.rect_width / 2, this.y + this.rect_height / 2);
+  }
+  
+  public void display(int fill) {
+    imageMode(CENTER);
+    fill(0);
+    rect(this.x, this.y, this.rect_width, this.rect_height, 10, 10, 10, 10);
+    
+    fill(fill);
+    textAlign(CENTER, CENTER);
+    text(this.text, this.x + this.rect_width / 2, this.y + this.rect_height / 2);
   }
   
   public void hoverChangeColor(){
-    imageMode(CENTER);
-    fill(0);
-    rect(this.x, this.y, this.rect_width, this.rect_height, 50, 50, 50, 50);
-    fill(100);
-    textAlign(CENTER, CENTER);
-    text(this.text, x + this.rect_width / 2, y + this.rect_height / 2);
+    if (mouseX >= this.x && mouseX <= this.x + this.rect_width && mouseY >= this.y && mouseY <= this.y + this.rect_height) {
+      this.display(100);
+    } else {
+      this.display();
+    }
   }
- }
+}
