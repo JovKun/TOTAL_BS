@@ -26,6 +26,12 @@ class Button {
     text(this.text, x + this.rect_width / 2, y + this.rect_height / 2);
   }
   
-  public void draw(){
+  public void hoverChangeColor(){
+    imageMode(CENTER);
+    fill(0);
+    rect(this.x, this.y, this.rect_width, this.rect_height, 50, 50, 50, 50);
+    fill(100);
+    textAlign(CENTER, CENTER);
+    text(this.text, x + this.rect_width / 2, y + this.rect_height / 2);
   }
  }
