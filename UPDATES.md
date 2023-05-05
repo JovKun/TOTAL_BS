@@ -1,8 +1,12 @@
 # Update Log
-### **v1.65** - May 4, 2023
-- Jeremy has updated the code, has managed to replaced the rectangles with buttons
-- Jeremy has proved mouseHover - through playButton
-- Jeremy did not complete mouseHover, waiting on Jovian for proper colors
+
+### **v2.0** - May 5, 2023
+- Jeremy has finished `mouseHover` for the button
+- Jovian fixed and cleaned Jeremy's code
+
+### **v1.7** - May 4, 2023
+- Jeremy managed to replace the buttons with objects
+- Jeremy did not complete `mouseHover`, waiting on Jovian for proper colors
 
 ### **v1.6** - May 1, 2023
 - Nathan added dead characters and enlarged them
