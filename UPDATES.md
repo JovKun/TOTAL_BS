@@ -1,6 +1,6 @@
 # Update Log
 
-### **v2.0** - May 5, 2023
+### **1.8** - May 5, 2023
 - Jeremy has finished `mouseHover` for the button
 - Jovian fixed and cleaned Jeremy's code
 
