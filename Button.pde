@@ -4,13 +4,15 @@ class Button {
   private int rect_width;
   private int rect_height;
   private String text;
+  private int destination;
   
-  public Button(int x, int y, String text) {
+  public Button(int x, int y, String text, int destination) {
     this.x = x;
     this.y = y;
     this.rect_width = 750;
     this.rect_height = 100;
     this.text = text;
+    this.destination = destination;
   }
   
   public void display() {
@@ -33,11 +35,19 @@ class Button {
     text(this.text, this.x + this.rect_width / 2, this.y + this.rect_height / 2);
   }
   
-  public void hoverChangeColor(){
+  public void hoverChangeColor() {
     if (mouseX >= this.x && mouseX <= this.x + this.rect_width && mouseY >= this.y && mouseY <= this.y + this.rect_height) {
       this.display(100);
     } else {
       this.display();
     }
+  }
+    
+  public int isMouseClicked(int current_scene) {
+    if (mouseX >= this.x && mouseX <= this.x + this.rect_width && mouseY >= this.y && mouseY <= this.y + this.rect_height) {
+      return destination;
+    }
+    
+    return current_scene;
   }
 }

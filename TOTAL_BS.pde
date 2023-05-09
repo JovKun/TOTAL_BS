@@ -6,6 +6,8 @@ Mage player_1;
 
 Button buttonPlay, buttonSetting, buttonCredits;
 
+int scene = 0;
+
 void setup() {
   fullScreen();
   
@@ -16,21 +18,37 @@ void setup() {
   
   player_1 = new Mage(200, 200);
   
-  buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY");
-  buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "SETTINGS");
-  buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "CREDITS");
+  buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY", 1);
+  buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "SETTINGS", 2);
+  buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "CREDITS", 3);
 }
 
 void draw() {
-  image(main_screen_art, width / 2, height / 2, width, height);
-  
-  fill(0);
-  buttonPlay.hoverChangeColor();
-  buttonSetting.hoverChangeColor();
-  buttonCredits.hoverChangeColor();
-  
-  fill(255);
-  textFont(font);
-  
-  player_1.display();
+  if (scene == 0) {
+    image(main_screen_art, width / 2, height / 2, width, height);
+    
+    fill(0);
+    buttonPlay.hoverChangeColor();
+    buttonSetting.hoverChangeColor();
+    buttonCredits.hoverChangeColor();
+    
+    fill(255);
+    textFont(font);
+    
+    player_1.display();
+  } else {
+    background(255);  
+  }
+}
+
+void mouseClicked() {
+  if (scene == 0) {
+    if (buttonPlay.isMouseClicked(scene) != scene) {
+      scene = buttonPlay.isMouseClicked(scene);
+    } else if (buttonSetting.isMouseClicked(scene) != scene){
+      scene = buttonSetting.isMouseClicked(scene);
+    } else if (buttonCredits.isMouseClicked(scene) != scene) {
+      scene = buttonCredits.isMouseClicked(scene);
+    }
+  }
 }
