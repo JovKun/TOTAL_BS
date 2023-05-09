@@ -1,6 +1,6 @@
 PFont font;
 
-PImage main_screen_art;
+PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
 Mage player_1;
 
@@ -13,6 +13,9 @@ void setup() {
   
   font = createFont("font.ttf", 64);
   main_screen_art = loadImage("main_screen_art.png");
+  play_scene_art = loadImage("play_scene_art.png");
+  settings_scene_art = loadImage("settings_scene_art.png");
+  credits_scene_art = loadImage("credits_scene_art.png");
   
   imageMode(CENTER);
   
@@ -36,8 +39,12 @@ void draw() {
     textFont(font);
     
     player_1.display();
-  } else {
-    background(255);  
+  } else if (scene == 1) {
+    image(play_scene_art, width / 2, height / 2, width, height);
+  } else if (scene == 2) {
+    image(settings_scene_art, width / 2, height / 2, width, height);
+  } else if (scene == 3) {
+    image(credits_scene_art, width / 2, height / 2, width, height);
   }
 }
 
