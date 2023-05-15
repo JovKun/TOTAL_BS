@@ -17,7 +17,7 @@ void setup() {
   
   player_1 = new Mage(200, 200);
   
-  buttonMenu = new Button(50, 50, 500, 100, "Return", 0);
+  buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY", 1);
   buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "SETTINGS", 2);
   buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "CREDITS", 3);
