@@ -4,7 +4,7 @@ PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
 Mage player_1;
 
-Button buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier;
+Button buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
 
 int scene = 0;
 

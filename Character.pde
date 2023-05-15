@@ -109,7 +109,7 @@ class Character {
       this.velocityX = -10;
     } else if (key_char == 'd') {
       if (this.characterX >= width - 100) {
-        this.characterX = width 
+        this.characterX = width;
       }
       
       this.velocityX = 10;
