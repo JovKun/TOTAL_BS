@@ -51,6 +51,12 @@ void draw() {
     background(100);
   } else if (scene == 3) {
     background(100);
+  } else if (scene == 4) {
+    background(255, 0, 0);
+  } else if (scene == 5) {
+    background(0, 0, 255);
+  } else if (scene == 6) {
+    background(0, 255, 0);
   }
 }
 
@@ -62,6 +68,14 @@ void mouseClicked() {
       scene = buttonSetting.isMouseClicked(scene);
     } else if (buttonCredits.isMouseClicked(scene) != scene) {
       scene = buttonCredits.isMouseClicked(scene);
+    }
+  } else if (scene == 1) {
+    if (buttonInferno.isMouseClicked(scene) != scene) {
+      scene = buttonInferno.isMouseClicked(scene);
+    } else if (buttonGlacier.isMouseClicked(scene) != scene){
+      scene = buttonGlacier.isMouseClicked(scene);
+    } else if (buttonForest.isMouseClicked(scene) != scene) {
+      scene = buttonForest.isMouseClicked(scene);
     }
   }
 }
