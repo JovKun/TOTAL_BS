@@ -1,13 +1,18 @@
 # Update Log
 
+### **v0.11** - May 15, 2023
+- Nathan created new scenes for the level selection
+- Jovian fixed the movement when the character are at the boundaries
+- Jeremy created return buttons
+
 ### **v0.10** - May 11, 2023
-- Nathan 
-- Jeremy is working on new Buttons for Playing buttons
-- Jovian
+- Nathan created platform images in which we can use to draw to the screen in different locations for different levels
+- Jeremy created new Buttons for level selection
+- Jovian started on character animations, jumping physics, and move controls for the first player
 
 ### **v0.9** - May 9, 2023
-- Nathan implemented images to settings and credits.
-- Jeremy and Jovian finished ButtonClicks - changes scenes. 
+- Nathan implemented images to settings and credits
+- Jeremy and Jovian finished ButtonClicks - changes scenes 
 
 ### **v0.8** - May 5, 2023
 - Jeremy has finished `mouseHover` for the button
@@ -15,7 +20,7 @@
 
 ### **v0.7** - May 4, 2023
 - Jeremy managed to replace the buttons with objects
-- Jeremy did not complete `mouseHover`, waiting on Jovian for proper colors.
+- Jeremy did not complete `mouseHover`, waiting on Jovian for proper colors
 
 ### **v0.6** - May 1, 2023
 - Nathan added dead characters and enlarged them

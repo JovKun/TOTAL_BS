@@ -5,7 +5,7 @@ class Character {
   protected int attack, attackSpeed;
   
   protected PImage standing, attacking, running, jumping, dead;
-  protected boolean isRange, isDead;
+  protected boolean isRange, isDead, boundLeft, boundRight;
   
   protected int characterX, characterY;
   protected float characterWidth, characterHeight;
@@ -43,6 +43,9 @@ class Character {
     this.gravity = 1;
     this.velocityY = 0;
     this.velocityX = 0;
+    
+    this.boundLeft = false;
+    this.boundRight = true;
   }
   
   // Method to take damage
@@ -85,8 +88,19 @@ class Character {
       this.state = "standing";
     }
     
-    if (this.characterX < width - 100 && this.characterX > 100) {
-      this.characterX += this.velocityX;
+    this.characterX += this.velocityX;
+    
+    if (this.characterX < 100) {
+      this.boundLeft = true;
+      
+      this.velocityX = 0;
+    } else if (this.characterX > width - 100) {
+      this.boundRight = true;
+      
+      this.velocityX = 0;
+    } else {
+      this.boundLeft = false;
+      this.boundRight = false;
     }
   }
   
@@ -101,18 +115,10 @@ class Character {
   
   // Method to move the character
   protected void move(char key_char) {
-    if (key_char == 'a') {
-      if (this.characterX <= 100) {
-        this.characterX = 101;
-      }
-      
+    if (key_char == 'a' && !this.boundLeft) {
       this.velocityX = -10;
-    } else if (key_char == 'd') {
-      if (this.characterX >= width - 100) {
-        this.characterX = width;
-      }
-      
-      this.velocityX = 10;
+    } else if (key_char == 'd' && !this.boundRight) {
+      this.velocityX = 10; 
     }
   }
   
