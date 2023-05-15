@@ -1,5 +1,10 @@
 # Update Log
 
+### **v0.10** - May 11, 2023
+- Nathan 
+- Jeremy is working on new Buttons for Playing buttons
+- Jovian
+
 ### **v0.9** - May 9, 2023
 - Nathan implemented images to settings and credits.
 - Jeremy and Jovian finished ButtonClicks - changes scenes. 
@@ -45,7 +50,7 @@
   - Buttons are built
   - Fonts are made
 
-### **v1.0** - April 5, 2023
+### **v0.0** - April 5, 2023
 - Intialized the files that we will be working on for the next few months!
 - Updated README.md to provide a more detailed explanation
 - Created UPDATES.md in order to provide an update log (as per the final project requirements)
