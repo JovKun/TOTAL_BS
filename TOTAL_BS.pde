@@ -4,7 +4,7 @@ PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
 Mage player_1;
 
-Button buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
+Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
 
 int scene = 0;
 
@@ -17,6 +17,7 @@ void setup() {
   
   player_1 = new Mage(200, 200);
   
+  buttonMenu = new Button(50, 50, 500, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY", 1);
   buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "SETTINGS", 2);
   buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "CREDITS", 3);
@@ -41,6 +42,7 @@ void draw() {
   } else if (scene == 1) {
     background(100);
     
+    buttonMenu.hoverChangeColor();
     buttonInferno.hoverChangeColor();
     buttonGlacier.hoverChangeColor();
     buttonForest.hoverChangeColor();
@@ -76,6 +78,8 @@ void mouseClicked() {
       scene = buttonGlacier.isMouseClicked(scene);
     } else if (buttonForest.isMouseClicked(scene) != scene) {
       scene = buttonForest.isMouseClicked(scene);
+    } else if(buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
     }
   }
 }

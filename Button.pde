@@ -7,10 +7,13 @@ class Button {
   private int destination;
   
   public Button(int x, int y, String text, int destination) {
+    this(x, y, 750, 100, text, destination);
+  }
+  public Button(int x, int y, int rect_width, int rect_height, String text, int destination) {
     this.x = x;
     this.y = y;
-    this.rect_width = 750;
-    this.rect_height = 100;
+    this.rect_width = rect_width;
+    this.rect_height = rect_height;
     this.text = text;
     this.destination = destination;
   }
