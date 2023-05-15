@@ -2,8 +2,9 @@
 
 ### **v0.11** - May 15, 2023
 - Nathan created new scenes for the level selection
+- Nathan created platform images for the different levels
 - Jovian fixed the movement when the character are at the boundaries
-- Jeremy created return buttons
+- Jeremy created return buttons that would return to the previous scene
 
 ### **v0.10** - May 11, 2023
 - Nathan created platform images in which we can use to draw to the screen in different locations for different levels
