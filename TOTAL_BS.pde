@@ -12,10 +12,6 @@ void setup() {
   fullScreen();
   
   font = createFont("font.ttf", 64);
-  main_screen_art = loadImage("main_screen_art.png");
-  play_scene_art = loadImage("play_scene_art.png");
-  settings_scene_art = loadImage("settings_scene_art.png");
-  credits_scene_art = loadImage("credits_scene_art.png");
   
   imageMode(CENTER);
   
@@ -28,7 +24,7 @@ void setup() {
 
 void draw() {
   if (scene == 0) {
-    image(main_screen_art, width / 2, height / 2, width, height);
+    background(100);
     
     fill(0);
     buttonPlay.hoverChangeColor();
@@ -37,14 +33,14 @@ void draw() {
     
     fill(255);
     textFont(font);
+  } else if (scene == 1) {
+    background(100);
     
     player_1.display();
-  } else if (scene == 1) {
-    image(play_scene_art, width / 2, height / 2, width, height);
   } else if (scene == 2) {
-    image(settings_scene_art, width / 2, height / 2, width, height);
+    background(100);
   } else if (scene == 3) {
-    image(credits_scene_art, width / 2, height / 2, width, height);
+    background(100);
   }
 }
 
@@ -57,5 +53,19 @@ void mouseClicked() {
     } else if (buttonCredits.isMouseClicked(scene) != scene) {
       scene = buttonCredits.isMouseClicked(scene);
     }
+  }
+}
+
+void keyPressed() {
+  if (key == 'w') {
+    player_1.jump(); 
+  } else if (key == 'a' || key == 'd') {
+    player_1.move(key);
+  }
+}
+
+void keyReleased() {
+  if (key == 'a' || key == 'd') {
+    player_1.move(); 
   }
 }
