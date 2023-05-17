@@ -5,6 +5,7 @@ PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 Mage player_1;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
+InfernoPlatform infernoPlatform;
 
 int scene = 0;
 
@@ -25,6 +26,8 @@ void setup() {
   buttonInferno = new Button(width / 2 - 350, height / 2, "Inferno", 4);
   buttonGlacier = new Button(width / 2 - 350, height / 2 + 150, "Glacier", 5);
   buttonForest = new Button(width / 2 - 350, height / 2 + 300, "Forest", 6);
+  
+  infernoPlatform = new InfernoPlatform(500, 500);
   
   textFont(font);
 }
@@ -54,11 +57,12 @@ void draw() {
   } else if (scene == 3) {
     background(100);
   } else if (scene == 4) {
-    background(255, 0, 0);
+    background(100, 0, 0);
+    infernoPlatform.displayInferno();
   } else if (scene == 5) {
-    background(0, 0, 255);
+    background(0, 100, 150);
   } else if (scene == 6) {
-    background(0, 255, 0);
+    background(0, 100, 0);
   }
 }
 
