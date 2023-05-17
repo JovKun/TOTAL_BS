@@ -6,8 +6,9 @@ Mage player_1;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
 
-GlacierPlatform glacierPlatform;
 InfernoPlatform infernoPlatform;
+GlacierPlatform glacierPlatform;
+ForestPlatform forestPlatform;
 
 int scene = 0;
 
@@ -29,8 +30,9 @@ void setup() {
   buttonGlacier = new Button(width / 2 - 350, height / 2 + 150, "Glacier", 5);
   buttonForest = new Button(width / 2 - 350, height / 2 + 300, "Forest", 6);
   
-  glacierPlatform = new GlacierPlatform(500, 500);
   infernoPlatform = new InfernoPlatform(500, 500);
+  glacierPlatform = new GlacierPlatform(500, 500);
+  forestPlatform = new ForestPlatform(500, 500);
   
   textFont(font);
 }
@@ -63,10 +65,11 @@ void draw() {
     background(100, 0, 0);
     infernoPlatform.displayInferno();
   } else if (scene == 5) {
-	background(0, 100, 150);
+  	background(0, 100, 150);
     glacierPlatform.displayGlacier();
   } else if (scene == 6) {
     background(0, 100, 0);
+    forestPlatform.displayForest();
   }
 }
 
