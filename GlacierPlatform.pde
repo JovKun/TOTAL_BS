@@ -9,8 +9,8 @@ class GlacierPlatform {
   public GlacierPlatform(int x, int y) {
     this.x = x;
     this.y = y;
-    this.widthPlatform = 200;
-    this.heightPlatform = 40;
+    this.widthPlatform = 180;
+    this.heightPlatform = 30;
     
     this.platform = loadImage("glacier_platform.png");
   }
