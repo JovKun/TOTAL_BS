@@ -5,6 +5,7 @@ PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 Mage player_1;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
+GlacierPlatform glacierPlatform;
 
 int scene = 0;
 
@@ -25,6 +26,8 @@ void setup() {
   buttonInferno = new Button(width / 2 - 350, height / 2, "Inferno", 4);
   buttonGlacier = new Button(width / 2 - 350, height / 2 + 150, "Glacier", 5);
   buttonForest = new Button(width / 2 - 350, height / 2 + 300, "Forest", 6);
+  
+  glacierPlatform = new GlacierPlatform(500, 500);
   
   textFont(font);
 }
@@ -57,6 +60,7 @@ void draw() {
     background(255, 0, 0);
   } else if (scene == 5) {
     background(0, 0, 255);
+    glacierPlatform.displayGlacier();
   } else if (scene == 6) {
     background(0, 255, 0);
   }
