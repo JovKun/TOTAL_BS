@@ -13,7 +13,7 @@ class Character {
   protected String state;
   
   protected float gravity;
-  protected float velocityY, velocityX;
+  protected float velocityY;
   
   // Character constructor
   public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY) {
@@ -38,11 +38,10 @@ class Character {
     this.characterWidth = height / 6;
     this.characterHeight = height / 6;
     
-    this.state = "running";
+    this.state = "standing";
     
     this.gravity = 1;
     this.velocityY = 0;
-    this.velocityX = 0;
     
     this.boundLeft = false;
     this.boundRight = true;
@@ -82,22 +81,21 @@ class Character {
     if (this.characterY < height - 100) {
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
+      this.state = "jumping";
     } else {
       this.velocityY = 0;
       this.characterY = height - 100;
-      this.state = "standing";
+      
+      if (!keyPressed) {
+        this.state = "standing";
+      }
     }
     
-    this.characterX += this.velocityX;
-    
+    // Check if the character has hit a boundary
     if (this.characterX < 100) {
       this.boundLeft = true;
-      
-      this.velocityX = 0;
     } else if (this.characterX > width - 100) {
       this.boundRight = true;
-      
-      this.velocityX = 0;
     } else {
       this.boundLeft = false;
       this.boundRight = false;
@@ -107,23 +105,21 @@ class Character {
   // Method to jump
   protected void jump() {
     if (this.characterY == height - 100) {
-      this.state = "jumping";
       this.characterY = height - 101;
       this.velocityY = -27.5;
     }
   }
   
   // Method to move the character
-  protected void move(char key_char) {
-    if (key_char == 'a' && !this.boundLeft) {
-      this.velocityX = -10;
-    } else if (key_char == 'd' && !this.boundRight) {
-      this.velocityX = 10; 
+  protected void move(String direction) {
+    if (direction == "left" && !this.boundLeft) {
+      this.characterX -= 10;
+    } else if (direction == "right" && !this.boundRight) {
+      this.characterX += 10; 
     }
-  }
-  
-  // Method to stop moving the character
-  protected void move () {
-    this.velocityX = 0; 
+    
+    if (state != "jumping") {
+      state = "running"; 
+    }
   }
 }

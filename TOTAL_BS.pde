@@ -2,13 +2,17 @@ PFont font;
 
 PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
-Mage player_1;
+Mage player1;
+Knight player2;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
 
 InfernoPlatform infernoPlatform;
 GlacierPlatform glacierPlatform;
 ForestPlatform forestPlatform;
+
+boolean player1Jump, player1Shoot, player1Right, player1Left;
+boolean player2Jump, player2Shoot, player2Right, player2Left;
 
 int scene = 0;
 
@@ -19,7 +23,8 @@ void setup() {
   
   imageMode(CENTER);
   
-  player_1 = new Mage(200, 200);
+  player1 = new Mage(200, 200);
+  player2 = new Knight(300, 200);
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY", 1);
@@ -56,20 +61,51 @@ void draw() {
     buttonForest.hoverChangeColor();
     
     fill(255);
-	player_1.display();
   } else if (scene == 2) {
     background(100);
   } else if (scene == 3) {
     background(100);
   } else if (scene == 4) {
     background(100, 0, 0);
+    
     infernoPlatform.displayInferno();
   } else if (scene == 5) {
   	background(0, 100, 150);
+  
     glacierPlatform.displayGlacier();
   } else if (scene == 6) {
     background(0, 100, 0);
+    
     forestPlatform.displayForest();
+  }
+  
+  if (scene > 3 && scene < 7) {
+    player1.display();
+    player2.display();
+    
+    if (player1Jump) {
+      player1.jump();
+    }
+    
+    if (player1Left) {
+      player1.move("left"); 
+    }
+    
+    if (player1Right) {
+      player1.move("right"); 
+    }
+    
+    if (player2Jump) {
+      player2.jump();
+    }
+    
+    if (player2Left) {
+      player2.move("left"); 
+    }
+    
+    if (player2Right) {
+      player2.move("right"); 
+    }
   }
 }
 
@@ -97,14 +133,24 @@ void mouseClicked() {
 
 void keyPressed() {
   if (key == 'w') {
-    player_1.jump(); 
-  } else if (key == 'a' || key == 'd') {
-    player_1.move(key);
+    player1Jump = true;
+  } else if (key == 'a') {
+    player1Left = true; 
+  } else if (key == 'd') {
+    player1Right = true; 
+  } else if (key == 's') {
+    player1Shoot = true; 
   }
 }
 
 void keyReleased() {
-  if (key == 'a' || key == 'd') {
-    player_1.move(); 
+  if (key == 'w') {
+    player1Jump = false;
+  } else if (key == 'a') {
+    player1Left = false; 
+  } else if (key == 'd') {
+    player1Right = false; 
+  } else if (key == 's') {
+    player1Shoot = false; 
   }
 }
