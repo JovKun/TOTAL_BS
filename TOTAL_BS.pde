@@ -27,9 +27,9 @@ void setup() {
   player2 = new Knight(300, 200);
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
-  buttonPlay = new Button(width / 2 - 350, height / 2, "PLAY", 1);
-  buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "SETTINGS", 2);
-  buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "CREDITS", 3);
+  buttonPlay = new Button(width / 2 - 350, height / 2, "Play", 1);
+  buttonSetting = new Button(width / 2 - 350, height / 2 + 150, "Settings", 2);
+  buttonCredits = new Button(width / 2 - 350, height / 2 + 300, "Credits", 3);
   
   buttonInferno = new Button(width / 2 - 350, height / 2, "Inferno", 4);
   buttonGlacier = new Button(width / 2 - 350, height / 2 + 150, "Glacier", 5);
@@ -141,6 +141,18 @@ void keyPressed() {
   } else if (key == 's') {
     player1Shoot = true; 
   }
+  
+  if (key == CODED) {
+    if (keyCode == UP) {
+      player2Jump = true;
+    } else if (keyCode == LEFT) {
+      player2Left = true; 
+    } else if (keyCode == RIGHT) {
+      player2Right = true; 
+    } else if (keyCode == DOWN) {
+      player2Shoot = true; 
+    }
+  }
 }
 
 void keyReleased() {
@@ -152,5 +164,17 @@ void keyReleased() {
     player1Right = false; 
   } else if (key == 's') {
     player1Shoot = false; 
+  }
+  
+  if (key == CODED) {
+    if (keyCode == UP) {
+      player2Jump = false;
+    } else if (keyCode == LEFT) {
+      player2Left = false; 
+    } else if (keyCode == RIGHT) {
+      player2Right = false; 
+    } else if (keyCode == DOWN) {
+      player2Shoot = false; 
+    }
   }
 }
