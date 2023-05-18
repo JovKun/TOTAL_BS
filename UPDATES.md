@@ -5,7 +5,7 @@
   - Made the different platforms into objects
   - Drew the platforms in each specific level
 - Jovian
-  - Optimized the keyPressed so that actions can be taken on every key that is pressed
+  - Optimized the `keyPressed` and `keyReleased` so that actions can be taken on every key that is pressed
   - Added the running animation to each character
   - Added a player 2 for future coding
 
