@@ -7,7 +7,7 @@
 - Jovian
   - Optimized the `keyPressed` and `keyReleased` so that actions can be taken on every key that is pressed
   - Added the running animation to each character
-  - Added a player 2 for future coding
+  - Added a player 2 with key controller
 
 ### **v0.11** - May 15, 2023
 - Nathan created new scenes for the level selection
