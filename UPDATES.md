@@ -1,5 +1,14 @@
 # Update Log
 
+### **v0.12** - May 17, 2023
+- Nathan and Jeremy 
+  - Made the different platforms into objects
+  - Drew the platforms in each specific level
+- Jovian
+  - Optimized the keyPressed so that actions can be taken on every key that is pressed
+  - Added the running animation to each character
+  - Added a player 2 for future coding
+
 ### **v0.11** - May 15, 2023
 - Nathan created new scenes for the level selection
 - Nathan created platform images for the different levels
