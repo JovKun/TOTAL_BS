@@ -8,6 +8,7 @@ class Character {
   protected boolean isRange, isDead, boundLeft, boundRight;
   
   protected int characterX, characterY;
+  protected int offsetX, offsetY;
   protected float characterWidth, characterHeight;
   
   protected String state;
@@ -16,7 +17,7 @@ class Character {
   protected float velocityY;
   
   // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY) {
+  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY) {
     this.totalHealth = totalHealth;
     this.currentHealth = totalHealth;
     this.attack = attack;
@@ -34,6 +35,9 @@ class Character {
     
     this.characterX = characterX;
     this.characterY = characterY;
+    
+    this.offsetX = offsetX;
+    this.offsetY = offsetY;
     
     this.characterWidth = height / 6;
     this.characterHeight = height / 6;
@@ -78,13 +82,13 @@ class Character {
   
   // Method to update the character
   protected void update() {
-    if (this.characterY < height - 100) {
+    if (this.characterY < height - 100 + this.offsetY) {
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
       this.state = "jumping";
     } else {
       this.velocityY = 0;
-      this.characterY = height - 100;
+      this.characterY = height - 100 + this.offsetY;
       
       if (!keyPressed) {
         this.state = "standing";
@@ -92,7 +96,7 @@ class Character {
     }
     
     // Check if the character has hit a boundary
-    if (this.characterX < 100) {
+    if (this.characterX < 100 + this.offsetX) {
       this.boundLeft = true;
     } else if (this.characterX > width - 100) {
       this.boundRight = true;
@@ -104,7 +108,7 @@ class Character {
   
   // Method to jump
   protected void jump() {
-    if (this.characterY == height - 100) {
+    if (this.characterY == height - 100 + this.offsetY) {
       this.characterY = height - 101;
       this.velocityY = -27.5;
     }
