@@ -106,13 +106,13 @@ class Character {
     
     if (!this.isDead) {
       if (this.state == "standing") {
-        image(standing, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(standing, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "jumping") {
-        image(jumping, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(jumping, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "running") {
-        image(running, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(running, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "attacking") {
-        image(attacking, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight);
+        image(attacking, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight);
       }
     } else {
       image(dead, this.characterX, this.characterY, this.characterWidth, this.characterHeight);
@@ -123,7 +123,7 @@ class Character {
   
   // Method to update the character
   protected void update() {
-    if (this.characterY < height - 100 + this.offsetY) {
+    if (this.characterY < height - 100) {
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
     } else {
@@ -149,7 +149,7 @@ class Character {
   
   // Method to jump
   protected void jump() {
-    if (this.characterY == height - 100 + this.offsetY) {
+    if (this.characterY == height - 100) {
       this.characterY = height - 101;
       this.velocityY = -27.5;
     }
