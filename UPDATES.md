@@ -1,5 +1,12 @@
 # Update Log
 
+### **v.0.14** - May 25, 2023
+- Jovian
+  - Found out how to reverse the character image on direction change
+  - Added running animation when moving
+- Nathan made the ground
+- Jeremy created objects for the level platforms
+
 ### **v.0.13** - May 23, 2023
 - Jovian Improved on the Character Physics
 - Nathan corrected the offset between characters during the iniatial drop. 
