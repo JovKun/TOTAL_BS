@@ -1,5 +1,10 @@
 # Update Log
 
+### **v.0.13** - May 23, 2023
+- Jovian Improved on the Character Physics
+- Nathan corrected the offset between characters during the iniatial drop. 
+- Jeremy switched from return buttons to backspaces for the levels - to return back to the previous menu. 
+
 ### **v0.12** - May 17, 2023
 - Nathan and Jeremy 
   - Made the different platforms into objects

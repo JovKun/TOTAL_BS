@@ -67,7 +67,6 @@ void draw() {
     background(100);
   } else if (scene == 4) {
     background(100, 0, 0);
-    
     infernoPlatform.displayInferno();
   } else if (scene == 5) {
   	background(0, 100, 150);
@@ -128,6 +127,12 @@ void mouseClicked() {
     } else if(buttonMenu.isMouseClicked(scene) != scene) {
       scene = buttonMenu.isMouseClicked(scene);
     }
+  } else if (scene == 2) {
+  } else if (scene == 3) {
+  } else if (scene == 4) {
+    if (buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
+    }
   }
 }
 
@@ -151,6 +156,12 @@ void keyPressed() {
       player2Right = true; 
     } else if (keyCode == DOWN) {
       player2Shoot = true; 
+    }
+  }
+  
+  if (keyCode == 8) {
+    if (scene >= 2 && scene <= 4) {
+      scene = 1; 
     }
   }
 }
