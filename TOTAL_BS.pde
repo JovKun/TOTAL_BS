@@ -68,14 +68,17 @@ void draw() {
   } else if (scene == 4) {
     background(100, 0, 0);
     infernoPlatform.displayInferno();
+    infernoPlatform.displayInfernoBoundary();
   } else if (scene == 5) {
   	background(0, 100, 150);
   
     glacierPlatform.displayGlacier();
+    glacierPlatform.displayGlacierBoundary();
   } else if (scene == 6) {
     background(0, 100, 0);
     
     forestPlatform.displayForest();
+    forestPlatform.displayForestBoundary();
   }
   
   if (scene > 3 && scene < 7) {
