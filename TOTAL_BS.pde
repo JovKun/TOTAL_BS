@@ -80,26 +80,24 @@ void draw() {
     background(100);
   } else if (scene == 4) {
     background(100, 0, 0);
-<<<<<<< Updated upstream
-    infernoPlatform.displayInferno();
+
     infernoPlatform.displayInfernoBoundary();
-=======
+
     System.out.println("Before InfernoLevel Loop");
     System.out.println(infernoLevel.length);
     for (int i = 0; i < infernoLevel.length; i++) {
       infernoLevel[i].displayInferno();
     }
     System.out.println("After infernoLevel Loop");
->>>>>>> Stashed changes
+
   } else if (scene == 5) {
   	background(0, 100, 150);
   
-    glacierPlatform.displayGlacier();
     glacierPlatform.displayGlacierBoundary();
   } else if (scene == 6) {
     background(0, 100, 0);
     
-    forestPlatform.displayForest();
+
     forestPlatform.displayForestBoundary();
   }
   
