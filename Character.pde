@@ -19,9 +19,12 @@ class Character {
   protected String direction;
   
   protected int flip;
+  private TOTAL_BS game;
+  
   
   // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY) {
+  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, game) {
+    this.game = game;
     this.totalHealth = totalHealth;
     this.currentHealth = totalHealth;
     this.attack = attack;
@@ -52,6 +55,9 @@ class Character {
     this.velocityY = 0;
     this.velocityX = 0;
     
+    this.boundLeft = false;
+    this.boundRight = true;
+    
     this.direction = "right";
     
     this.flip = 1;
@@ -71,8 +77,6 @@ class Character {
   protected void display() {
     pushMatrix();
     
-    // Evaluate the direction of the character, and flip the image accordingly
-    // Also, evaluate the state of the character
     if (this.velocityY != 0) {
       this.state = "jumping";
       
@@ -118,33 +122,35 @@ class Character {
     }
     
     popMatrix();
+    
+    if (!this.isDead) {
+      if (game.debug)
+      {
+        rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+      }
+      
+      noFill();
+      stroke(400, 100, 0);
+    }
+    
   }
   
   // Method to update the character
   protected void update() {
     if (this.characterY < height - 100) {
-      
-      // If the character has hit the ceiling, code a "head bang"
-      if (this.characterY > height) {
-        this.velocityY = 0; 
-      }
-      
-      // Update the y movement
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
     } else {
-      
-      // Character has hit the floor, stop moving
       this.velocityY = 0;
       this.characterY = height - 100;
     }
     
-    // Check if the character has hit a left or right boundary
-    if (this.characterX < this.characterWidth * 0.2) {
+    // Check if the character has hit a boundary
+    if (this.characterX < 100) {
       if (this.velocityX > 0) {
         this.characterX += this.velocityX; 
       }
-    } else if (this.characterX > width - this.characterWidth * 0.2) {
+    } else if (this.characterX > width - 100) {
       if (this.velocityX < 0) {
         this.characterX += this.velocityX;
       }
