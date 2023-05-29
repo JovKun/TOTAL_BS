@@ -1,5 +1,9 @@
 # Update Log
 
+### **v.0.15** - May 29, 2023
+- Jovian
+  - Redid the boundaries so that the characters stop at the edge of the window
+
 ### **v.0.14** - May 25, 2023
 - Jovian
   - Found out how to reverse the character image on direction change
