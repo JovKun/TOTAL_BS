@@ -52,9 +52,6 @@ class Character {
     this.velocityY = 0;
     this.velocityX = 0;
     
-    this.boundLeft = false;
-    this.boundRight = true;
-    
     this.direction = "right";
     
     this.flip = 1;
@@ -74,6 +71,8 @@ class Character {
   protected void display() {
     pushMatrix();
     
+    // Evaluate the direction of the character, and flip the image accordingly
+    // Also, evaluate the state of the character
     if (this.velocityY != 0) {
       this.state = "jumping";
       
@@ -106,13 +105,13 @@ class Character {
     
     if (!this.isDead) {
       if (this.state == "standing") {
-        image(standing, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(standing, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "jumping") {
-        image(jumping, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(jumping, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "running") {
-        image(running, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight); 
+        image(running, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
       } else if (this.state == "attacking") {
-        image(attacking, this.flip * this.characterX, this.characterY, this.characterWidth, this.characterHeight);
+        image(attacking, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight);
       }
     } else {
       image(dead, this.characterX, this.characterY, this.characterWidth, this.characterHeight);
@@ -123,20 +122,29 @@ class Character {
   
   // Method to update the character
   protected void update() {
-    if (this.characterY < height - 100 + this.offsetY) {
+    if (this.characterY < height - 100) {
+      
+      // If the character has hit the ceiling, code a "head bang"
+      if (this.characterY > height) {
+        this.velocityY = 0; 
+      }
+      
+      // Update the y movement
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
     } else {
+      
+      // Character has hit the floor, stop moving
       this.velocityY = 0;
       this.characterY = height - 100;
     }
     
-    // Check if the character has hit a boundary
-    if (this.characterX < 100) {
+    // Check if the character has hit a left or right boundary
+    if (this.characterX < this.characterWidth * 0.2) {
       if (this.velocityX > 0) {
         this.characterX += this.velocityX; 
       }
-    } else if (this.characterX > width - 100) {
+    } else if (this.characterX > width - this.characterWidth * 0.2) {
       if (this.velocityX < 0) {
         this.characterX += this.velocityX;
       }
@@ -149,7 +157,7 @@ class Character {
   
   // Method to jump
   protected void jump() {
-    if (this.characterY == height - 100 + this.offsetY) {
+    if (this.characterY == height - 100) {
       this.characterY = height - 101;
       this.velocityY = -27.5;
     }
