@@ -17,18 +17,28 @@ boolean player1Jump, player1Shoot, player1Right, player1Left;
 boolean player2Jump, player2Shoot, player2Right, player2Left;
 
 int scene = 0;
+protected boolean debug = true;
 
 void setup() {
 
   fullScreen();
+<<<<<<< Updated upstream
   frameRate(60);
+=======
+  System.out.println(this.getClass());
+>>>>>>> Stashed changes
   
   font = createFont("font.ttf", 64);
   
   imageMode(CENTER);
   
+<<<<<<< Updated upstream
   player1 = new Mage(width - 1850, 200);
   player2 = new Archer_1(width - 100, 200);
+=======
+  player1 = new Mage(200, 200, this);
+  player2 = new Archer_1(300, 200);
+>>>>>>> Stashed changes
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "Play", 1);
