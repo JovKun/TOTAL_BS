@@ -11,6 +11,7 @@ InfernoPlatform infernoPlatform;
 GlacierPlatform glacierPlatform;
 ForestPlatform forestPlatform;
 InfernoPlatform[] infernoLevel;
+GlacierPlatform[] glacierLevel;
 
 boolean player1Jump, player1Shoot, player1Right, player1Left;
 boolean player2Jump, player2Shoot, player2Right, player2Left;
@@ -25,8 +26,8 @@ void setup() {
   
   imageMode(CENTER);
   
-  player1 = new Mage(200, 200);
-  player2 = new Archer_1(300, 200);
+  player1 = new Mage(width - 1850, 200);
+  player2 = new Archer_1(width - 100, 200);
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "Play", 1);
@@ -43,14 +44,27 @@ void setup() {
   
   // Inferno level
   infernoLevel = new InfernoPlatform[8];
-  infernoLevel[0] = new InfernoPlatform(width - 1000, height - 200);
-  infernoLevel[1] = new InfernoPlatform(width - 400, height - 100);
-  infernoLevel[2] = new InfernoPlatform(width - 1400, height - 700);
-  infernoLevel[3] = new InfernoPlatform(width - 350, height - 400);
-  infernoLevel[4] = new InfernoPlatform(width - 1200, height - 400);
-  infernoLevel[5] = new InfernoPlatform(width - 900, height - 700);
-  infernoLevel[6] = new InfernoPlatform(width - 1200, height - 500);
-  infernoLevel[7] = new InfernoPlatform(width - 1500, height - 200);
+  infernoLevel[0] = new InfernoPlatform(width - 400, height - 200);
+  infernoLevel[1] = new InfernoPlatform(width - 1600, height - 200);
+  infernoLevel[2] = new InfernoPlatform(width - 1130, height - 400);
+  infernoLevel[3] = new InfernoPlatform(width - 850, height - 400);
+  infernoLevel[4] = new InfernoPlatform(width - 1600, height - 600);
+  infernoLevel[5] = new InfernoPlatform(width - 400, height - 600);
+  infernoLevel[6] = new InfernoPlatform(width - 850, height - 800);
+  infernoLevel[7] = new InfernoPlatform(width - 1130, height - 800);
+  
+  // Glacier level
+  glacierLevel = new GlacierPlatform[9];
+  glacierLevel[0] = new GlacierPlatform(width - 400, height - 250);
+  glacierLevel[1] = new GlacierPlatform(width - 1250, height - 200);
+  glacierLevel[2] = new GlacierPlatform(width - 1530, height - 200);
+  glacierLevel[3] = new GlacierPlatform(width - 950, height - 450);
+  glacierLevel[4] = new GlacierPlatform(width - 1500, height - 650);
+  glacierLevel[5] = new GlacierPlatform(width - 2000, height - 400);
+  glacierLevel[6] = new GlacierPlatform(width - 120, height - 700);
+  glacierLevel[7] = new GlacierPlatform(width - 400, height - 700);
+  glacierLevel[8] = new GlacierPlatform(width - 950, height - 850);
+  
   
   textFont(font);
 }
@@ -92,8 +106,12 @@ void draw() {
 
   } else if (scene == 5) {
   	background(0, 100, 150);
-  
+      
     glacierPlatform.displayGlacierBoundary();
+    
+    for (int i = 0; i < glacierLevel.length; i++) {
+      glacierLevel[i].displayGlacier();
+    }
   } else if (scene == 6) {
     background(0, 100, 0);
     
