@@ -52,9 +52,6 @@ class Character {
     this.velocityY = 0;
     this.velocityX = 0;
     
-    this.boundLeft = false;
-    this.boundRight = true;
-    
     this.direction = "right";
     
     this.flip = 1;
@@ -74,6 +71,8 @@ class Character {
   protected void display() {
     pushMatrix();
     
+    // Evaluate the direction of the character, and flip the image accordingly
+    // Also, evaluate the state of the character
     if (this.velocityY != 0) {
       this.state = "jumping";
       
@@ -124,19 +123,28 @@ class Character {
   // Method to update the character
   protected void update() {
     if (this.characterY < height - 100) {
+      
+      // If the character has hit the ceiling, code a "head bang"
+      if (this.characterY > height) {
+        this.velocityY = 0; 
+      }
+      
+      // Update the y movement
       this.velocityY += this.gravity;
       this.characterY += this.velocityY;
     } else {
+      
+      // Character has hit the floor, stop moving
       this.velocityY = 0;
       this.characterY = height - 100;
     }
     
-    // Check if the character has hit a boundary
-    if (this.characterX < 100) {
+    // Check if the character has hit a left or right boundary
+    if (this.characterX < this.characterWidth * 0.2) {
       if (this.velocityX > 0) {
         this.characterX += this.velocityX; 
       }
-    } else if (this.characterX > width - 100) {
+    } else if (this.characterX > width - this.characterWidth * 0.2) {
       if (this.velocityX < 0) {
         this.characterX += this.velocityX;
       }

@@ -21,6 +21,7 @@ int scene = 0;
 void setup() {
 
   fullScreen();
+  frameRate(60);
   
   font = createFont("font.ttf", 64);
   
