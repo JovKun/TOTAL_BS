@@ -10,6 +10,7 @@ Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, butt
 InfernoPlatform infernoPlatform;
 GlacierPlatform glacierPlatform;
 ForestPlatform forestPlatform;
+InfernoPlatform[] infernoLevel;
 
 boolean player1Jump, player1Shoot, player1Right, player1Left;
 boolean player2Jump, player2Shoot, player2Right, player2Left;
@@ -17,6 +18,7 @@ boolean player2Jump, player2Shoot, player2Right, player2Left;
 int scene = 0;
 
 void setup() {
+
   fullScreen();
   
   font = createFont("font.ttf", 64);
@@ -38,6 +40,17 @@ void setup() {
   infernoPlatform = new InfernoPlatform(500, 500);
   glacierPlatform = new GlacierPlatform(500, 500);
   forestPlatform = new ForestPlatform(500, 500);
+  
+  // Inferno level
+  infernoLevel = new InfernoPlatform[8];
+  infernoLevel[0] = new InfernoPlatform(width - 1000, height - 200);
+  infernoLevel[1] = new InfernoPlatform(width - 400, height - 100);
+  infernoLevel[2] = new InfernoPlatform(width - 1400, height - 700);
+  infernoLevel[3] = new InfernoPlatform(width - 350, height - 400);
+  infernoLevel[4] = new InfernoPlatform(width - 1200, height - 400);
+  infernoLevel[5] = new InfernoPlatform(width - 900, height - 700);
+  infernoLevel[6] = new InfernoPlatform(width - 1200, height - 500);
+  infernoLevel[7] = new InfernoPlatform(width - 1500, height - 200);
   
   textFont(font);
 }
@@ -67,15 +80,25 @@ void draw() {
     background(100);
   } else if (scene == 4) {
     background(100, 0, 0);
-    infernoPlatform.displayInferno();
+
+    infernoPlatform.displayInfernoBoundary();
+
+    System.out.println("Before InfernoLevel Loop");
+    System.out.println(infernoLevel.length);
+    for (int i = 0; i < infernoLevel.length; i++) {
+      infernoLevel[i].displayInferno();
+    }
+    System.out.println("After infernoLevel Loop");
+
   } else if (scene == 5) {
   	background(0, 100, 150);
   
-    glacierPlatform.displayGlacier();
+    glacierPlatform.displayGlacierBoundary();
   } else if (scene == 6) {
     background(0, 100, 0);
     
-    forestPlatform.displayForest();
+
+    forestPlatform.displayForestBoundary();
   }
   
   if (scene > 3 && scene < 7) {
@@ -160,7 +183,7 @@ void keyPressed() {
   }
   
   if (keyCode == 8) {
-    if (scene >= 2 && scene <= 4) {
+    if (scene >= 4 && scene <= 6) {
       scene = 1; 
     }
   }
