@@ -4,7 +4,7 @@
 - Jovian
   - Redid the boundaries so that the characters stop at the edge of the window
 - Jeremy
-  - Finished Instantiating these level platforms and finished display the array of platforms (organized) for Inferno and Glacier. 
+  - Finished instantiating these level platforms and finished display the array of platforms (organized) for Inferno and Glacier. 
 
 ### **v.0.14** - May 25, 2023
 - Jovian
