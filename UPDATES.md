@@ -1,5 +1,10 @@
 # Update Log
 
+### **v0.16** - May 31, 2023
+- Jovian
+  - Added higher gravity for faster gameplay
+  - Changed for loops to enhanced for loops
+
 ### **v.0.15** - May 29, 2023
 - Jovian
   - Redid the boundaries so that the characters stop at the edge of the window
