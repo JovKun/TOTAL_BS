@@ -52,7 +52,7 @@ class Character {
     
     this.state = "standing";
     
-    this.gravity = 1;
+    this.gravity = 2;
     this.velocityY = 0;
     this.velocityX = 0;
     
@@ -167,11 +167,11 @@ class Character {
     }
     
     // Check if the character has hit a boundary
-    if (this.characterX < 100) {
+    if (this.characterX < this.characterWidth * 0.2) {
       if (this.velocityX > 0) {
         this.characterX += this.velocityX; 
       }
-    } else if (this.characterX > width - 100) {
+    } else if (this.characterX > width - this.characterWidth * 0.2) {
       if (this.velocityX < 0) {
         this.characterX += this.velocityX;
       }
@@ -186,7 +186,7 @@ class Character {
   protected void jump() {
     if (this.characterY == height - 100) {
       this.characterY = height - 101;
-      this.velocityY = -27.5;
+      this.velocityY = -37.5;
     }
   }
   

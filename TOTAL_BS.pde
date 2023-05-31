@@ -33,12 +33,11 @@ void setup() {
   imageMode(CENTER);
   
 
-  player1 = new Mage(width - 1850, 200, this);
+  player1 = new Mage(100, 200, this);
   player2 = new Archer_1(width - 100, 200, this);
 
   //player1 = new Mage(200, 200, this);
   //player2 = new Archer_1(300, 200, this);
-
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "Play", 1);
@@ -77,17 +76,21 @@ void setup() {
   glacierLevel[8] = new GlacierPlatform(width - 950, height - 850);
   
   // Forest Level
-  forestLevel = new ForestPlatform[8];
-  forestLevel[0] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[1] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[2] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[3] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[4] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[5] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[6] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[7] = new ForestPlatform(width - 200, height - 1000);
-  
-  
+  forestLevel = new ForestPlatform[14];
+  forestLevel[0] = new ForestPlatform(width + 140, height - 200);
+  forestLevel[1] = new ForestPlatform(width - 2060, height - 200);
+  forestLevel[2] = new ForestPlatform(width - 550, height - 135);
+  forestLevel[3] = new ForestPlatform(width - 830, height - 135);
+  forestLevel[4] = new ForestPlatform(width - 1110, height - 135);
+  forestLevel[5] = new ForestPlatform(width - 1390, height - 135);
+  forestLevel[6] = new ForestPlatform(width - 1600, height - 400);
+  forestLevel[7] = new ForestPlatform(width - 2060, height - 550);
+  forestLevel[8] = new ForestPlatform(width - 970, height - 300);
+  forestLevel[9] = new ForestPlatform(width - 60, height - 450);
+  forestLevel[10] = new ForestPlatform(width - 340, height - 450);
+  forestLevel[11] = new ForestPlatform(width + 140, height - 750);
+  forestLevel[12] = new ForestPlatform(width - 970, height - 550);
+  forestLevel[13] = new ForestPlatform(width - 2060, height - 830);
   textFont(font);
 }
 
@@ -117,32 +120,34 @@ void draw() {
   } else if (scene == 4) {
     background(100, 0, 0);
 
-    infernoPlatform.displayInfernoBoundary();
+    infernoPlatform.displayBoundary();
 
     System.out.println("Before InfernoLevel Loop");
     System.out.println(infernoLevel.length);
-    for (int i = 0; i < infernoLevel.length; i++) {
-      infernoLevel[i].displayInferno();
+    
+    for (InfernoPlatform platform : infernoLevel) {
+      platform.display();
     }
+    
     System.out.println("After infernoLevel Loop");
 
   } else if (scene == 5) {
   	background(0, 100, 150);
       
-    glacierPlatform.displayGlacierBoundary();
+    glacierPlatform.displayBoundary();
     
-    for (int i = 0; i < glacierLevel.length; i++) {
-      glacierLevel[i].displayGlacier();
+    for (GlacierPlatform platform : glacierLevel) {
+      platform.display();
     }
   } else if (scene == 6) {
     background(0, 100, 0);
     
 
-    forestPlatform.displayForestBoundary();
+    forestPlatform.displayBoundary();
     
-    for (int i = 0; i < forestLevel.length; i++) {
-      forestLevel[i].displayForest();
-  }
+    for (ForestPlatform platform : forestLevel) {
+      platform.display();
+    }
   }
   
   if (scene > 3 && scene < 7) {
