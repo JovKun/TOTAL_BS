@@ -24,7 +24,7 @@ class Character {
   
   
   // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, game) {
+  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game) {
     this.game = game;
     this.totalHealth = totalHealth;
     this.currentHealth = totalHealth;
@@ -125,15 +125,11 @@ class Character {
     popMatrix();
     
     if (!this.isDead) {
-<<<<<<< Updated upstream
       if (game.debug)
       {
         rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
       }
       
-=======
-      rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
->>>>>>> Stashed changes
       noFill();
       stroke(400, 100, 0);
     }
