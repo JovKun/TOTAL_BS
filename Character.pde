@@ -52,7 +52,7 @@ class Character {
     
     this.state = "standing";
     
-    this.gravity = 1;
+    this.gravity = 2;
     this.velocityY = 0;
     this.velocityX = 0;
     
@@ -166,7 +166,7 @@ class Character {
   protected void jump() {
     if (this.characterY == height - 100) {
       this.characterY = height - 101;
-      this.velocityY = -27.5;
+      this.velocityY = -37.5;
     }
   }
   

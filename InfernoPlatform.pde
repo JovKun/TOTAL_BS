@@ -17,12 +17,12 @@ class InfernoPlatform {
     this.ground = loadImage("inferno_ground.png");
   }
   
-  public void displayInferno() {
+  public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
   }
 
-  public void displayInfernoBoundary() {
+  public void displayBoundary() {
     image(this.ground, width / 2 - 780, height / 2 + 540);
     image(this.ground, width / 2 - 420, height / 2 + 540);
     image(this.ground, width / 2 - 60, height / 2 + 540);
