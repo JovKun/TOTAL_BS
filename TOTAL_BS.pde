@@ -77,17 +77,21 @@ void setup() {
   glacierLevel[8] = new GlacierPlatform(width - 950, height - 850);
   
   // Forest Level
-  forestLevel = new ForestPlatform[8];
-  forestLevel[0] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[1] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[2] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[3] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[4] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[5] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[6] = new ForestPlatform(width - 200, height - 1000);
-  forestLevel[7] = new ForestPlatform(width - 200, height - 1000);
-  
-  
+  forestLevel = new ForestPlatform[14];
+  forestLevel[0] = new ForestPlatform(width + 140, height - 200);
+  forestLevel[1] = new ForestPlatform(width - 2060, height - 200);
+  forestLevel[2] = new ForestPlatform(width - 550, height - 135);
+  forestLevel[3] = new ForestPlatform(width - 830, height - 135);
+  forestLevel[4] = new ForestPlatform(width - 1110, height - 135);
+  forestLevel[5] = new ForestPlatform(width - 1390, height - 135);
+  forestLevel[6] = new ForestPlatform(width - 1600, height - 400);
+  forestLevel[7] = new ForestPlatform(width - 2060, height - 550);
+  forestLevel[8] = new ForestPlatform(width - 970, height - 300);
+  forestLevel[9] = new ForestPlatform(width - 60, height - 450);
+  forestLevel[10] = new ForestPlatform(width - 340, height - 450);
+  forestLevel[11] = new ForestPlatform(width + 140, height - 750);
+  forestLevel[12] = new ForestPlatform(width - 970, height - 550);
+  forestLevel[13] = new ForestPlatform(width - 2060, height - 830);
   textFont(font);
 }
 
