@@ -125,15 +125,35 @@ class Character {
     popMatrix();
     
     if (!this.isDead) {
-      if (game.debug)
-      {
-        rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+      if (game.debug) {
+        if (this.direction == "right") {
+          if ((game.player1 instanceof Mage) || (game.player2 instanceof Mage)) {
+            translate(-5, -5);
+            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            noFill();
+            stroke(400, 100, 0);
+          }
+          else {
+            translate(-5, 0);
+            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            noFill();
+            stroke(400, 100, 0);
+          }
+          
+        }
+        if (this.direction == "left") {
+          if (player1 instanceof Mage) {
+            translate(-25, -5);
+          }
+          else {
+            translate(-25, 0);
+          }
+          rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+          noFill();
+          stroke(400, 100, 0);
+        }
       }
-      
-      noFill();
-      stroke(400, 100, 0);
-    }
-    
+    } 
   }
   
   // Method to update the character
