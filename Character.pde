@@ -52,7 +52,7 @@ class Character {
     
     this.state = "standing";
     
-    this.gravity = 1;
+    this.gravity = 2;
     this.velocityY = 0;
     this.velocityX = 0;
     
@@ -125,8 +125,7 @@ class Character {
     popMatrix();
     
     if (!this.isDead) {
-      if (game.debug)
-      {
+      if (game.debug) {
         rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
       }
       
@@ -147,11 +146,11 @@ class Character {
     }
     
     // Check if the character has hit a boundary
-    if (this.characterX < 100) {
+    if (this.characterX < this.characterWidth * 0.2) {
       if (this.velocityX > 0) {
         this.characterX += this.velocityX; 
       }
-    } else if (this.characterX > width - 100) {
+    } else if (this.characterX > width - this.characterWidth * 0.2) {
       if (this.velocityX < 0) {
         this.characterX += this.velocityX;
       }
@@ -166,7 +165,7 @@ class Character {
   protected void jump() {
     if (this.characterY == height - 100) {
       this.characterY = height - 101;
-      this.velocityY = -27.5;
+      this.velocityY = -37.5;
     }
   }
   

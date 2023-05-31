@@ -33,12 +33,11 @@ void setup() {
   imageMode(CENTER);
   
 
-  player1 = new Mage(width - 1850, 200, this);
+  player1 = new Mage(100, 200, this);
   player2 = new Archer_1(width - 100, 200, this);
 
   //player1 = new Mage(200, 200, this);
   //player2 = new Archer_1(300, 200, this);
-
   
   buttonMenu = new Button(50, 50, 350, 100, "Return", 0);
   buttonPlay = new Button(width / 2 - 350, height / 2, "Play", 1);
@@ -121,32 +120,34 @@ void draw() {
   } else if (scene == 4) {
     background(100, 0, 0);
 
-    infernoPlatform.displayInfernoBoundary();
+    infernoPlatform.displayBoundary();
 
     System.out.println("Before InfernoLevel Loop");
     System.out.println(infernoLevel.length);
-    for (int i = 0; i < infernoLevel.length; i++) {
-      infernoLevel[i].displayInferno();
+    
+    for (InfernoPlatform platform : infernoLevel) {
+      platform.display();
     }
+    
     System.out.println("After infernoLevel Loop");
 
   } else if (scene == 5) {
   	background(0, 100, 150);
       
-    glacierPlatform.displayGlacierBoundary();
+    glacierPlatform.displayBoundary();
     
-    for (int i = 0; i < glacierLevel.length; i++) {
-      glacierLevel[i].displayGlacier();
+    for (GlacierPlatform platform : glacierLevel) {
+      platform.display();
     }
   } else if (scene == 6) {
     background(0, 100, 0);
     
 
-    forestPlatform.displayForestBoundary();
+    forestPlatform.displayBoundary();
     
-    for (int i = 0; i < forestLevel.length; i++) {
-      forestLevel[i].displayForest();
-  }
+    for (ForestPlatform platform : forestLevel) {
+      platform.display();
+    }
   }
   
   if (scene > 3 && scene < 7) {

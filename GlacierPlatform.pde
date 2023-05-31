@@ -17,12 +17,12 @@ class GlacierPlatform {
     this.ground = loadImage("glacier_ground.png");
   }
   
-  public void displayGlacier() {
+  public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
   }
 
-  public void displayGlacierBoundary() {
+  public void displayBoundary() {
     image(this.ground, width / 2 - 780, height / 2 + 540);
     image(this.ground, width / 2 - 420, height / 2 + 540);
     image(this.ground, width / 2 - 60, height / 2 + 540);
