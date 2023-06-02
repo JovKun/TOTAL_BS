@@ -2,7 +2,7 @@ PFont font;
 
 PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
-Mage player1;
+Knight player1;
 Archer_1 player2;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
@@ -33,8 +33,8 @@ void setup() {
   imageMode(CENTER);
   
 
-  player1 = new Mage(100, 200, this);
-  player2 = new Archer_1(width - 100, 200, this);
+  player1 = new Knight(100, 200, this, 0);
+  player2 = new Archer_1(width - 100, 200, this, 1);
 
   //player1 = new Mage(200, 200, this);
   //player2 = new Archer_1(300, 200, this);

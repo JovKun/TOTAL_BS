@@ -24,7 +24,7 @@ class Character {
   
   
   // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game) {
+  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game, int player) {
     this.game = game;
     this.totalHealth = totalHealth;
     this.currentHealth = totalHealth;
@@ -59,7 +59,11 @@ class Character {
     this.boundLeft = false;
     this.boundRight = true;
     
-    this.direction = "right";
+    if (player == 0) {
+      this.direction = "right"; 
+    } else if (player == 1) {
+      this.direction = "left";
+    }
     
     this.flip = 1;
   }
@@ -127,28 +131,31 @@ class Character {
     if (!this.isDead) {
       if (game.debug) {
         if (this.direction == "right") {
-          if ((game.player1 instanceof Mage) || (game.player2 instanceof Mage)) {
-            translate(-5, -5);
-            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
-            noFill();
-            stroke(400, 100, 0);
-          }
-          else {
+          if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
             translate(-5, 0);
             rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
-            noFill();
-            stroke(400, 100, 0);
+          } 
+          else if (Knight.class.isInstance(game.player1) || Knight.class.isInstance(game.player2)) {
+             translate(10, 5);
+             rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+          } 
+          else {
+            translate(-20, 0);
+            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+
           }
-          
+          noFill();
+          stroke(400, 100, 0);
         }
         if (this.direction == "left") {
-          if (player1 instanceof Mage) {
+          if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
             translate(-25, -5);
+            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
           }
           else {
-            translate(-25, 0);
+            translate(-20, 0);
+            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
           }
-          rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
           noFill();
           stroke(400, 100, 0);
         }
