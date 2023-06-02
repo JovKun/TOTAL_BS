@@ -4,7 +4,7 @@
 - Jovian
   - Added higher gravity for faster gameplay
   - Changed for loops to enhanced for loops
- - Jeremy
+- Jeremy
   - Worked on Forest Platforms (unfinished)
 
 ### **v.0.15** - May 29, 2023
