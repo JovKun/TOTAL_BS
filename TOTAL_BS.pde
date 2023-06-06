@@ -26,12 +26,10 @@ void setup() {
   frameRate(60);
 
   System.out.println(this.getClass());
-
   
   font = createFont("font.ttf", 64);
   
   imageMode(CENTER);
-  
 
   player1 = new Knight(100, 200, this, 0);
   player2 = new Archer_1(width - 100, 200, this, 1);
@@ -117,6 +115,16 @@ void draw() {
     background(100);
   } else if (scene == 3) {
     background(100);
+    
+    fill(0);
+    rect(width / 2 - 300, height / 2 - 200, 600, 550, 100);
+    
+    fill(255);
+    
+    text("Creators:", width / 2, height / 2 - 100);
+    text("Jovian Kuntjoro", width / 2, height / 2);
+    text("Jeremy Wu", width / 2, height / 2 + 100);
+    text("Nathan Rajkumar", width / 2, height / 2 + 200);
   } else if (scene == 4) {
     background(100, 0, 0);
 

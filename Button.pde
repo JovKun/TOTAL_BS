@@ -18,16 +18,6 @@ class Button {
     this.destination = destination;
   }
   
-  public void display() {
-    imageMode(CENTER);
-    fill(0);
-    rect(this.x, this.y, this.rect_width, this.rect_height, 10, 10, 10, 10);
-    
-    fill(255);
-    textAlign(CENTER, CENTER);
-    text(this.text, this.x + this.rect_width / 2, this.y + this.rect_height / 2);
-  }
-  
   public void display(int fill) {
     imageMode(CENTER);
     fill(0);
@@ -42,7 +32,7 @@ class Button {
     if (mouseX >= this.x && mouseX <= this.x + this.rect_width && mouseY >= this.y && mouseY <= this.y + this.rect_height) {
       this.display(100);
     } else {
-      this.display();
+      this.display(255);
     }
   }
     
