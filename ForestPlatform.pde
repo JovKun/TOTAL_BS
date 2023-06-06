@@ -20,6 +20,7 @@ class ForestPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
+    rect(this.x - 280, this.y - 80, 360, 60);
   }
   
   public void displayBoundary() {

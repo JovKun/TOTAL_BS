@@ -20,6 +20,7 @@ class GlacierPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
+    rect(this.x, this.y, 180, 30);
   }
 
   public void displayBoundary() {
