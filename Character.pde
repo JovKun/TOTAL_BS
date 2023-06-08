@@ -21,6 +21,11 @@ class Character {
   protected int flip;
   private TOTAL_BS game;
   
+  protected int bottomLeft;
+  protected int bottomRight;
+  protected int topLeft;
+  protected int topRight;
+  
   
   
   // Character constructor
@@ -146,6 +151,7 @@ class Character {
           }
           noFill();
           stroke(400, 100, 0);
+          
         }
         if (this.direction == "left") {
           if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
@@ -161,6 +167,16 @@ class Character {
         }
       }
     } 
+  }
+  
+  protected float getY(float yy) {
+      yy = this.characterY + this.offsetY - this.characterHeight * 0.2 - 1;
+      return yy;
+  }
+ 
+  protected float getX(float xx) {
+      xx = this.characterX + this.offsetX - this.characterWidth * 0.16;
+      return xx;
   }
   
   // Method to update the character
@@ -187,6 +203,17 @@ class Character {
     }
     
     this.velocityX = 0;
+    
+    if (game.scene == 5) {
+      for (GlacierPlatform platform : glacierLevel) {
+        if (this.topRight.getY() < platform.topLeft.getY() || this.bottomLeft.getY() > platform.bottomRight.getY()) {
+          this.velocityY = 0;
+       }
+        if (this.topRight.getX() < platform.topLeft.getX() || this.bottomLeft.getX() > platform.bottomRight.getX()) {
+          this.velocityX = 0;
+       }
+      }
+    }
   }
   
   // Method to jump
