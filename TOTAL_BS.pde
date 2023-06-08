@@ -98,7 +98,7 @@ void setup() {
 void draw() {
   if (scene == 0) {
     background(100);
-    
+    textSize(64);
     fill(0);
     buttonPlay.hoverChangeColor();
     buttonSetting.hoverChangeColor();
@@ -107,7 +107,7 @@ void draw() {
     fill(255);
   } else if (scene == 1) {
     background(100);
-    
+    textSize(64);
     buttonMenu.hoverChangeColor();
     buttonInferno.hoverChangeColor();
     buttonGlacier.hoverChangeColor();
@@ -116,9 +116,20 @@ void draw() {
     fill(255);
   } else if (scene == 2) {
     background(100);
+    textSize(64);
+    buttonMenu.hoverChangeColor(); 
+    fill (0);
+    imageMode(CENTER);
+    rect(width / 2 - 500, height / 2 - 500, 1000, 1000, 100);
+    
+    fill (255);
+    textSize(100);
+    text("KeyBinds:", width / 2, height / 2 - 450);
+    textSize(50);
+    text("Player 1:", width / 2 - 350, height / 2 - 400);
   } else if (scene == 3) {
     background(100);
-    
+    buttonMenu.hoverChangeColor();
     fill(0);
     rect(width / 2 - 300, height / 2 - 200, 600, 550, 100);
     
@@ -211,7 +222,13 @@ void mouseClicked() {
       scene = buttonMenu.isMouseClicked(scene);
     }
   } else if (scene == 2) {
+    if(buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
+    }
   } else if (scene == 3) {
+    if(buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
+    }
   } else if (scene == 4) {
     if (buttonMenu.isMouseClicked(scene) != scene) {
       scene = buttonMenu.isMouseClicked(scene);
