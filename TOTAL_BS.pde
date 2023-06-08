@@ -2,8 +2,8 @@ PFont font;
 
 PImage main_screen_art, play_scene_art, settings_scene_art, credits_scene_art;
 
-Knight player1;
-Archer_1 player2;
+Mage player1;
+Archer player2;
 
 Button buttonMenu, buttonPlay, buttonSetting, buttonCredits, buttonInferno, buttonGlacier, buttonForest;
 
@@ -18,6 +18,7 @@ boolean player1Jump, player1Shoot, player1Right, player1Left;
 boolean player2Jump, player2Shoot, player2Right, player2Left;
 
 int scene = 0;
+
 protected boolean debug = true;
 
 void setup() {
@@ -31,8 +32,8 @@ void setup() {
   
   imageMode(CENTER);
 
-  player1 = new Knight(100, 200, this, 0);
-  player2 = new Archer_1(width - 100, 200, this, 1);
+  player1 = new Mage(100, 200, this, 0);
+  player2 = new Archer(width - 100, 200, this, 1);
 
   //player1 = new Mage(200, 200, this);
   //player2 = new Archer_1(300, 200, this);
@@ -174,6 +175,12 @@ void draw() {
       player1.move("right"); 
     }
     
+    if (player1Shoot) {
+      if (Shooter.class.isInstance(player1)) {
+        player1.createProjectile();
+      }
+    }
+    
     if (player2Jump) {
       player2.jump();
     }
@@ -184,6 +191,12 @@ void draw() {
     
     if (player2Right) {
       player2.move("right"); 
+    }
+    
+    if (player2Shoot) {
+      if (Shooter.class.isInstance(player2)) {
+        player2.createProjectile();
+      }
     }
   }
 }
