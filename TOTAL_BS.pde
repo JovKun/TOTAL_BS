@@ -74,7 +74,7 @@ void setup() {
   glacierLevel[8] = new GlacierPlatform(width - 950, height - 850);
   
   // Forest Level
-  forestLevel = new ForestPlatform[14];
+  forestLevel = new ForestPlatform[17];
   forestLevel[0] = new ForestPlatform(width + 140, height - 200);
   forestLevel[1] = new ForestPlatform(width - 2060, height - 200);
   forestLevel[2] = new ForestPlatform(width - 550, height - 135);
@@ -83,19 +83,22 @@ void setup() {
   forestLevel[5] = new ForestPlatform(width - 1390, height - 135);
   forestLevel[6] = new ForestPlatform(width - 1600, height - 400);
   forestLevel[7] = new ForestPlatform(width - 2060, height - 550);
-  forestLevel[8] = new ForestPlatform(width - 970, height - 300);
+  forestLevel[8] = new ForestPlatform(width - 1000, height - 300);
   forestLevel[9] = new ForestPlatform(width - 60, height - 450);
   forestLevel[10] = new ForestPlatform(width - 340, height - 450);
   forestLevel[11] = new ForestPlatform(width + 140, height - 750);
-  forestLevel[12] = new ForestPlatform(width - 970, height - 550);
+  forestLevel[12] = new ForestPlatform(width - 1000, height - 550);
   forestLevel[13] = new ForestPlatform(width - 2060, height - 830);
+  forestLevel[14] = new ForestPlatform(width - 500, height - 850);
+  forestLevel[15] = new ForestPlatform(width - 1450, height - 850);
+  forestLevel[16] = new ForestPlatform(width - 1000, height - 775);
   textFont(font);
 }
 
 void draw() {
   if (scene == 0) {
     background(100);
-    
+    textSize(64);
     fill(0);
     buttonPlay.hoverChangeColor();
     buttonSetting.hoverChangeColor();
@@ -104,7 +107,7 @@ void draw() {
     fill(255);
   } else if (scene == 1) {
     background(100);
-    
+    textSize(64);
     buttonMenu.hoverChangeColor();
     buttonInferno.hoverChangeColor();
     buttonGlacier.hoverChangeColor();
@@ -113,9 +116,20 @@ void draw() {
     fill(255);
   } else if (scene == 2) {
     background(100);
+    textSize(64);
+    buttonMenu.hoverChangeColor(); 
+    fill (0);
+    imageMode(CENTER);
+    rect(width / 2 - 500, height / 2 - 500, 1000, 1000, 100);
+    
+    fill (255);
+    textSize(100);
+    text("KeyBinds:", width / 2, height / 2 - 450);
+    textSize(50);
+    text("Player 1:", width / 2 - 350, height / 2 - 400);
   } else if (scene == 3) {
     background(100);
-    
+    buttonMenu.hoverChangeColor();
     fill(0);
     rect(width / 2 - 300, height / 2 - 200, 600, 550, 100);
     
@@ -208,7 +222,13 @@ void mouseClicked() {
       scene = buttonMenu.isMouseClicked(scene);
     }
   } else if (scene == 2) {
+    if(buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
+    }
   } else if (scene == 3) {
+    if(buttonMenu.isMouseClicked(scene) != scene) {
+      scene = buttonMenu.isMouseClicked(scene);
+    }
   } else if (scene == 4) {
     if (buttonMenu.isMouseClicked(scene) != scene) {
       scene = buttonMenu.isMouseClicked(scene);
