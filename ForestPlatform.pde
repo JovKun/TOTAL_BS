@@ -10,8 +10,8 @@ class ForestPlatform {
   public ForestPlatform(int x, int y) {
     this.x = x;
     this.y = y;
-    this.widthPlatform = 180;
-    this.heightPlatform = 30;
+    this.widthPlatform = 360;
+    this.heightPlatform = 60;
     
     this.platform = loadImage("forest_platform.png");
     this.ground = loadImage("forest_ground.png");
@@ -20,7 +20,7 @@ class ForestPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
-    rect(this.x - 280, this.y - 80, 360, 60);
+    rect(this.x - 180, this.y - 80, this.widthPlatform, this.heightPlatform);
   }
   
   public void displayBoundary() {

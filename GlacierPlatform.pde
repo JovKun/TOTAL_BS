@@ -10,8 +10,8 @@ class GlacierPlatform {
   public GlacierPlatform(int x, int y) {
     this.x = x;
     this.y = y;
-    this.widthPlatform = 180;
-    this.heightPlatform = 30;
+    this.widthPlatform = 360;
+    this.heightPlatform = 60;
     
     this.platform = loadImage("glacier_platform.png");
     this.ground = loadImage("glacier_ground.png");
@@ -20,7 +20,7 @@ class GlacierPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
-    rect(this.x, this.y, 180, 30);
+    rect(this.x - 180, this.y - 80, this.widthPlatform, this.heightPlatform);
   }
 
   public void displayBoundary() {
