@@ -1,11 +1,22 @@
 # Update Log
 
+### **v0.17**
+- Jovian
+  - Decreased the gravity for smoother devices, but slower devices will have slower character movements
+  - Initialized the projectile spawning (not good spawning but spawning nontheless)
+    - Need to work on projectile-spam protection
+  - Reworked the class hierarchy, so that `Mage` and `Archer` both fall under a new class: `Shooter`.
+- Jeremy
+  - Fixing the platform layouts
+  - Created hitboxes for the platforms
+
+
 ### **v0.16** - May 31, 2023
 - Jovian
   - Added higher gravity for faster gameplay
-  - Changed for loops to enhanced for loops
+  - Changed for loops to enhanced for loops (spicy)
 - Jeremy
-  - Worked on Forest Platforms (unfinished)
+  - Worked on different platform layouts for different levels
 
 ### **v.0.15** - May 29, 2023
 - Jovian
@@ -17,12 +28,12 @@
 - Jovian
   - Found out how to reverse the character image on direction change
   - Added running animation when moving
-- Nathan made the ground
-- Jeremy created objects (classes) for the level platforms. 
+- Nathan made the ground from new ground images
+- Jeremy created classes for the level platforms and initialized them as objects. 
 
 ### **v.0.13** - May 23, 2023
-- Jovian Improved on the Character Physics
-- Nathan corrected the offset between characters during the iniatial drop. 
+- Jovian improved the character physics
+- Nathan corrected the offset between characters during the initial drop. 
 - Jeremy switched from return buttons to backspaces for the levels - to return back to the previous menu. 
 
 ### **v0.12** - May 17, 2023
@@ -63,10 +74,11 @@
 - Jeremy was resting due to the chem test D:
 
 ### **v0.5** - April 27, 2023
-- Nathan adjusted the in-game character size to adapt to monitor
+- Nathan adjusted the in-game character size to adapt to monitor sizes
 - Nathan added a background image to the main screen
-- Jovian rounded off buttons
-- Jovian switched the characters to objects
+- Jovian 
+  - Rounded off main menu buttons
+  - Switched the characters to individual objects
 - Jeremy did some work on the button hover mechanic
 
 ### **v0.4** - April 25, 2023
@@ -79,8 +91,8 @@
 
 ### **v0.2** - April 17, 2023
 - Nathan finished making the pixel art, but obstacles were encountered when the image grew blurry when enlarged
+  - Will re-do the pixel art at a higher resolution in an attempt to preserve the resolution when enlarged
 - Jovian imported the initial character files and drew a single character to the screen
-- Nathan will re-do the pixel art at a higher resolution in an attempt to preserve the resolution when enlarged
 - Jeremy is currently attempting to create a hover system for the button, and will later attempt to create a clicking system
 
 ### **v0.1** - April 11, 2023
@@ -88,7 +100,7 @@
 - Nathan is making character pixel art for the game
 - Main Menu is currently being built by Jovian
   - Buttons are built
-  - Fonts are made
+  - Fonts are imported
 
 ### **v0.0** - April 5, 2023
 - Intialized the files that we will be working on for the next few months!
