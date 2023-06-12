@@ -124,9 +124,27 @@ void draw() {
     
     fill (255);
     textSize(100);
-    text("KeyBinds:", width / 2, height / 2 - 450);
-    textSize(50);
-    text("Player 1:", width / 2 - 350, height / 2 - 400);
+    text("KeyBinds", width / 2, height / 2 - 450);
+    textSize(48);
+    text("Player One", width / 2, height / 2 - 320);
+    text("W", width / 2 - 350, height / 2 - 250);
+    text("Jump", width / 2 + 300, height / 2 - 250);
+    text("A", width / 2 - 350, height / 2 - 180);
+    text("Left", width / 2 + 300, height / 2 - 180);
+    text("D", width / 2 - 350, height / 2 - 110);
+    text("Right", width / 2 + 300, height / 2 - 110);
+    text("S", width / 2 - 350, height / 2 - 40);
+    text("Shoot or Swing", width / 2 + 300, height / 2 - 40);
+    text("Player Two", width / 2, height / 2 + 100);
+    text("Up Arrow", width / 2 - 300, height / 2 + 170);
+    text("Jump", width / 2 + 300, height / 2 + 170);
+    text("Left Arrow", width / 2 - 300, height / 2 + 240);
+    text("Left", width / 2 + 300, height / 2 + 240);
+    text("Right Arrow", width / 2 - 300, height / 2 + 310);
+    text("Right", width / 2 + 300, height / 2 + 310);
+    text("Down Arrow", width / 2 - 300, height / 2 + 380);
+    text("Shoot or Swing", width / 2 + 300, height / 2 + 380);
+    
   } else if (scene == 3) {
     background(100);
     buttonMenu.hoverChangeColor();
@@ -135,7 +153,7 @@ void draw() {
     
     fill(255);
     
-    text("Creators:", width / 2, height / 2 - 100);
+    text("-Creators-", width / 2, height / 2 - 100);
     text("Jovian Kuntjoro", width / 2, height / 2);
     text("Jeremy Wu", width / 2, height / 2 + 100);
     text("Nathan Rajkumar", width / 2, height / 2 + 200);
