@@ -4,6 +4,8 @@ class ForestPlatform {
   private int widthPlatform;
   private int heightPlatform;
   
+  private int hitboxX, hitboxY;
+  
   private PImage platform;
   private PImage ground;
   
@@ -13,6 +15,9 @@ class ForestPlatform {
     this.widthPlatform = 360;
     this.heightPlatform = 60;
     
+    this.hitboxX = this.x - 180;
+    this.hitboxY = this.y - 80;
+    
     this.platform = loadImage("forest_platform.png");
     this.ground = loadImage("forest_ground.png");
   }
@@ -20,7 +25,7 @@ class ForestPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
-    rect(this.x - 180, this.y - 80, this.widthPlatform, this.heightPlatform);
+    rect(this.hitboxX, this.hitboxY, this.widthPlatform, this.heightPlatform);
   }
   
   public void displayBoundary() {

@@ -11,6 +11,9 @@ class Character {
   protected int offsetX, offsetY;
   protected float characterWidth, characterHeight;
   
+  protected float hitboxX, hitboxY;
+  protected float hitboxWidth, hitboxHeight;
+  
   protected String state;
   
   protected float gravity;
@@ -20,13 +23,6 @@ class Character {
   
   protected int flip;
   private TOTAL_BS game;
-  
-  protected int bottomLeft;
-  protected int bottomRight;
-  protected int topLeft;
-  protected int topRight;
-  
-  
   
   // Character constructor
   public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game, int player) {
@@ -48,6 +44,11 @@ class Character {
     
     this.characterX = characterX;
     this.characterY = characterY;
+    
+    this.hitboxX = this.characterX + this.offsetX - this.characterWidth * 0.16;
+    this.hitboxY = this.characterY + this.offsetY - this.characterHeight * 0.2 - 1;
+    this.hitboxWidth = this.characterWidth / 2.70;
+    this.hitboxHeight = this.characterHeight / 2.40;
     
     this.offsetX = offsetX;
     this.offsetY = offsetY;
@@ -138,29 +139,29 @@ class Character {
         if (this.direction == "right") {
           if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
             translate(-5, 0);
-            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
           } 
           else if (Knight.class.isInstance(game.player1) || Knight.class.isInstance(game.player2)) {
              translate(10, 5);
-             rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+             rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
           } 
           else {
             translate(-20, 0);
-            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
 
           }
           noFill();
           stroke(400, 100, 0);
-          
+        
         }
         if (this.direction == "left") {
           if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
             translate(-25, -5);
-            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
           }
           else {
             translate(-20, 0);
-            rect(this.characterX + this.offsetX - this.characterWidth * 0.16, this.characterY + this.offsetY - this.characterHeight * 0.2 - 1, this.characterWidth / 2.70, this.characterHeight / 2.40, 1);
+            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
           }
           noFill();
           stroke(400, 100, 0);
@@ -204,14 +205,62 @@ class Character {
     
     this.velocityX = 0;
     
-    if (game.scene == 5) {
-      for (GlacierPlatform platform : glacierLevel) {
-        if (this.topRight.getY() < platform.topLeft.getY() || this.bottomLeft.getY() > platform.bottomRight.getY()) {
+    if (game.scene == 4) {
+      boolean isInHitbox = false;
+      
+      for (InfernoPlatform platform : infernoLevel) {
+        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
           this.velocityY = 0;
-       }
-        if (this.topRight.getX() < platform.topLeft.getX() || this.bottomLeft.getX() > platform.bottomRight.getX()) {
           this.velocityX = 0;
-       }
+          
+          isInHitbox = true;
+          
+          break;
+        }
+      }
+      
+      if (isInHitbox) {
+        this.gravity = 0; 
+      } else {
+        this.gravity = 2; 
+      }
+    } else if (game.scene == 5) {
+      boolean isInHitbox = false;
+      
+      for (GlacierPlatform platform : glacierLevel) {
+        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
+          this.velocityY = 0;
+          this.velocityX = 0;
+          
+          isInHitbox = true;
+          
+          break;
+        }
+      }
+      
+      if (isInHitbox) {
+        this.gravity = 0; 
+      } else {
+        this.gravity = 2; 
+      }
+    } else if (game.scene == 6) {
+      boolean isInHitbox = false;
+      
+      for (ForestPlatform platform : forestLevel) {
+        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
+          this.velocityY = 0;
+          this.velocityX = 0;
+          
+          isInHitbox = true;
+          
+          break;
+        }
+      }
+      
+      if (isInHitbox) {
+        this.gravity = 0; 
+      } else {
+        this.gravity = 2; 
       }
     }
   }

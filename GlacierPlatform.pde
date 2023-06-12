@@ -4,6 +4,8 @@ class GlacierPlatform {
   private int widthPlatform;
   private int heightPlatform;
   
+  private int hitboxX, hitboxY;
+  
   private PImage platform;
   private PImage ground;
   
@@ -13,6 +15,9 @@ class GlacierPlatform {
     this.widthPlatform = 360;
     this.heightPlatform = 60;
     
+    this.hitboxX = this.x - 180;
+    this.hitboxY = this.y - 80;
+    
     this.platform = loadImage("glacier_platform.png");
     this.ground = loadImage("glacier_ground.png");
   }
@@ -20,7 +25,7 @@ class GlacierPlatform {
   public void display() {
     imageMode(CENTER);
     image(this.platform, this.x, this.y);
-    rect(this.x - 180, this.y - 80, this.widthPlatform, this.heightPlatform);
+    rect(this.hitboxX, this.hitboxY, this.widthPlatform, this.heightPlatform);
   }
 
   public void displayBoundary() {
@@ -30,7 +35,5 @@ class GlacierPlatform {
     image(this.ground, width / 2 + 300, height / 2 + 540);
     image(this.ground, width / 2 + 660, height / 2 + 540);
     image(this.ground, width / 2 + 1020, height / 2 + 540);
-    
   }
-  
 }
