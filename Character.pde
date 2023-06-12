@@ -22,7 +22,7 @@ class Character {
   private TOTAL_BS game;
   
   // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game, int player) {
+  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game, int player) {
     this.game = game;
     this.totalHealth = totalHealth;
     this.currentHealth = totalHealth;
@@ -75,6 +75,7 @@ class Character {
   protected void display() {
     pushMatrix();
     
+    // Determine the direction of the character
     if (this.velocityY != 0) {
       this.state = "jumping";
       
@@ -121,6 +122,7 @@ class Character {
     
     popMatrix();
     
+    // display the hitbox of the character
     if (!this.isDead) {
       if (game.debug) {
         if (this.direction == "right") {

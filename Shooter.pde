@@ -13,7 +13,7 @@ class Shooter extends Character {
   // Shooter constructor
   public Shooter(String projectileType, String standing, String attacking, String running, String jumping, String dead, int characterX, int characterY, TOTAL_BS gameObject, int player, int offsetX, int offsetY, int projectileOffset) {
     
-    super(5, 1, 1, standing, attacking, running, jumping, dead, true, characterX, characterY, offsetX, offsetY, gameObject, player);
+    super(5, 1, 1, standing, attacking, running, jumping, dead, characterX, characterY, offsetX, offsetY, gameObject, player);
     
     this.projectile = projectileType;
     this.projectileArray = new ArrayList<Projectile>();
@@ -34,6 +34,7 @@ class Shooter extends Character {
     this.projectileArray.add(new Projectile(this.projectile, this.projectileOffset, this.characterX, this.characterY, this.direction));
   }
   
+  // Override the original Character update in order to include updating the projectile as well
   @Override public void update() {
     if (this.characterY < height - 100) {
       this.velocityY += this.gravity;

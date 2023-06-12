@@ -29,6 +29,5 @@ class InfernoPlatform {
     image(this.ground, width / 2 + 300, height / 2 + 540);
     image(this.ground, width / 2 + 660, height / 2 + 540);
     image(this.ground, width / 2 + 1020, height / 2 + 540);
-    
   }
 }

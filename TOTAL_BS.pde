@@ -237,7 +237,9 @@ void keyPressed() {
   } else if (key == 'd') {
     player1Right = true; 
   } else if (key == 's') {
-    player1Shoot = true; 
+    if (Shooter.class.isInstance(player1)) {
+      player1.createProjectile();
+    } 
   }
   
   if (key == CODED) {
@@ -248,7 +250,9 @@ void keyPressed() {
     } else if (keyCode == RIGHT) {
       player2Right = true; 
     } else if (keyCode == DOWN) {
-      player2Shoot = true; 
+      if (Shooter.class.isInstance(player2)) {
+        player2.createProjectile();
+      } 
     }
   }
   
@@ -266,8 +270,6 @@ void keyReleased() {
     player1Left = false; 
   } else if (key == 'd') {
     player1Right = false; 
-  } else if (key == 's') {
-    player1Shoot = false; 
   }
   
   if (key == CODED) {
@@ -277,8 +279,6 @@ void keyReleased() {
       player2Left = false; 
     } else if (keyCode == RIGHT) {
       player2Right = false; 
-    } else if (keyCode == DOWN) {
-      player2Shoot = false; 
     }
   }
 }

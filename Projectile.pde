@@ -4,7 +4,7 @@ class Projectile {
   private PImage projectile;
   
   private int projectileX, projectileY;
-  private int speedX = 20;
+  private int speedX = 30;
   private int direction;
   
   private int offset;
@@ -14,8 +14,8 @@ class Projectile {
     this.projectile = loadImage(projectile);
     this.offset = offset;
     
-    this.projectileX = projectileX;
-    this.projectileY = projectileY;
+    this.projectileX = projectileX - 175;
+    this.projectileY = projectileY - 15;
     
     if (direction == "right") {
       this.direction = 1; 
@@ -26,9 +26,13 @@ class Projectile {
   
   // Method to display the projectile
   public void display() {
-    this.update();
+    pushMatrix();
     
-    image(this.projectile, this.projectileX + this.offset, this.projectileY);
+    this.update();
+    scale(this.direction, 1);
+    image(this.projectile, this.direction * this.projectileX + this.offset, this.projectileY);
+    
+    popMatrix();
   }
   
   // Method to update the projectile
