@@ -1,10 +1,14 @@
-int scene = 0; // Main Scene
+// Initialize the scene to the main scene
+int scene = 0;
 
+// The characters!
 Character player1 = new Character(10, 50, "right", "red");
 
+// Booleans to check the character action keys
 boolean player1Jump, player1Shoot, player1Left, player1Right;
 boolean player2Jump, player2Shoot, player2Left, player2Right;
 
+// Setup the screen and framerate
 void setup() {
   fullScreen();
   frameRate(60);  
@@ -13,11 +17,14 @@ void setup() {
 void draw() {
   background(20);
   
+  // The ground
   fill(100);
   rect(0, height - 50, width, 50);
   
+  // Here is your character!
   player1.display();
   
+  // Do the character actions based on which keys are pressed
   if (player1Jump) {
     player1.jump();
   }
@@ -35,6 +42,7 @@ void draw() {
   }
 }
 
+// Functions to sense which keys are currently pressed down
 void keyPressed() {
   if (key == 'w') {
     player1Jump = true;

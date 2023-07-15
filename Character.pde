@@ -18,6 +18,7 @@ class Character {
   private int movementSpeed;
   private int jumpSpeed;
   
+  // Character constructor
   public Character(int characterX, int characterY, String direction, String team) {
     this.health = 5;
     this.attack = 1;
@@ -40,6 +41,7 @@ class Character {
     this.jumpSpeed = -30;
   }
   
+  // Method to display the characters
   public void display() {
     noStroke();
     
@@ -54,6 +56,7 @@ class Character {
     this.update();
   }
   
+  // Method to update the characters
   private void update() {
     if (this.characterY + this.characterHeight != height - 50) {
       this.velocityY += this.gravity; 
@@ -67,6 +70,7 @@ class Character {
     }
   }
   
+  // Method to make the characters jump
   public void jump() {
     if (this.characterY + this.characterHeight == height - 50) {
       this.velocityY = -30;
@@ -74,6 +78,7 @@ class Character {
     }
   };
   
+  // Method to make the characters move in either direction
   public void move(String direction) {
     if (direction == "left") {
       this.characterX -= this.movementSpeed;
