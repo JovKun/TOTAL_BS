@@ -1,286 +1,84 @@
 class Character {
   
   // Character variables
-  protected int totalHealth, currentHealth;
-  protected int attack, attackSpeed;
+  private int health;
+  private int attack;
   
-  protected PImage standing, attacking, running, jumping, dead;
-  protected boolean isRange, isDead, boundLeft, boundRight;
+  private int characterX, characterY;
+  private int characterWidth, characterHeight;
   
-  protected int characterX, characterY;
-  protected int offsetX, offsetY;
-  protected float characterWidth, characterHeight;
+  private float gravity;
+  private float velocityY;
   
-  protected float hitboxX, hitboxY;
-  protected float hitboxWidth, hitboxHeight;
+  private String direction;
   
-  protected String state;
+  private String team;
   
-  protected float gravity;
-  protected float velocityY, velocityX;
+  private int groundHeight;
+  private int movementSpeed;
+  private int jumpSpeed;
   
-  protected String direction;
-  
-  protected int flip;
-  private TOTAL_BS game;
-  
-  // Character constructor
-  public Character(int totalHealth, int attack, int attackSpeed, String standing, String attacking, String running, String jumping, String dead, boolean isRange, int characterX, int characterY, int offsetX, int offsetY, TOTAL_BS game, int player) {
-    this.game = game;
-    this.totalHealth = totalHealth;
-    this.currentHealth = totalHealth;
-    this.attack = attack;
-    this.attackSpeed = attackSpeed;
-    
-    this.standing = loadImage(standing);
-    this.attacking = loadImage(attacking);
-    this.running = loadImage(running);
-    this.jumping = loadImage(jumping);
-    this.dead = loadImage(dead);
-    this.dead.filter(GRAY);
-    
-    this.isRange = isRange;
-    this.isDead = false;
+  public Character(int characterX, int characterY, String direction, String team) {
+    this.health = 5;
+    this.attack = 1;
     
     this.characterX = characterX;
     this.characterY = characterY;
     
-    this.hitboxX = this.characterX + this.offsetX - this.characterWidth * 0.16;
-    this.hitboxY = this.characterY + this.offsetY - this.characterHeight * 0.2 - 1;
-    this.hitboxWidth = this.characterWidth / 2.70;
-    this.hitboxHeight = this.characterHeight / 2.40;
+    this.characterWidth = 50;
+    this.characterHeight = 80;
     
-    this.offsetX = offsetX;
-    this.offsetY = offsetY;
-    
-    this.characterWidth = height / 6;
-    this.characterHeight = height / 6;
-    
-    this.state = "standing";
-    
-    this.gravity = 2;
+    this.gravity = 1.5;
     this.velocityY = 0;
-    this.velocityX = 0;
-    
-    this.boundLeft = false;
-    this.boundRight = true;
-    
-    if (player == 0) {
-      this.direction = "right"; 
-    } else if (player == 1) {
-      this.direction = "left";
-    }
-    
-    this.flip = 1;
-  }
-  
-  // Method to take damage
-  protected void takeDamage(int amount) {
-    if (amount >= this.currentHealth) {
-      this.currentHealth = 0;
-      this.isDead = true;
-    } else {
-      this.currentHealth -= amount; 
-    }
-  }
-  
-  // Method to display the character
-  protected void display() {
-    pushMatrix();
-    
-    if (this.velocityY != 0) {
-      this.state = "jumping";
-      
-      if (this.direction == "right") {
-        this.flip = 1;
-      } else if (this.direction == "left") {
-        this.flip = -1;
-      }
-    } else {
-      if (this.velocityX > 0) {
-        this.flip = 1;
-        this.state = "running";
-      } else if (this.velocityX < 0) {
-        this.flip = -1;
-        this.state = "running";
-      } else {
-        if (this.direction == "right") {
-          this.flip = 1;
-        } else if (this.direction == "left") {
-          this.flip = -1; 
-        }
-        
-        this.state = "standing"; 
-      }
-    }
-    
-    scale(this.flip, 1);
-    
-    this.update();
-    
-    if (!this.isDead) {
-      if (this.state == "standing") {
-        image(standing, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
-      } else if (this.state == "jumping") {
-        image(jumping, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
-      } else if (this.state == "running") {
-        image(running, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight); 
-      } else if (this.state == "attacking") {
-        image(attacking, this.flip * this.characterX + this.offsetX, this.characterY + this.offsetY, this.characterWidth, this.characterHeight);
-      }
-    } else {
-      image(dead, this.characterX, this.characterY, this.characterWidth, this.characterHeight);
-    }
-    
-    popMatrix();
-    
-    if (!this.isDead) {
-      if (game.debug) {
-        if (this.direction == "right") {
-          if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
-            translate(-5, 0);
-            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
-          } 
-          else if (Knight.class.isInstance(game.player1) || Knight.class.isInstance(game.player2)) {
-             translate(10, 5);
-             rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
-          } 
-          else {
-            translate(-20, 0);
-            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
-
-          }
-          noFill();
-          stroke(400, 100, 0);
-        
-        }
-        if (this.direction == "left") {
-          if (Mage.class.isInstance(game.player1) || Mage.class.isInstance(game.player2)) {
-            translate(-25, -5);
-            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
-          }
-          else {
-            translate(-20, 0);
-            rect(this.hitboxX, this.hitboxY, this.hitboxWidth, this.hitboxHeight, 1);
-          }
-          noFill();
-          stroke(400, 100, 0);
-        }
-      }
-    } 
-  }
-  
-  protected float getY(float yy) {
-      yy = this.characterY + this.offsetY - this.characterHeight * 0.2 - 1;
-      return yy;
-  }
- 
-  protected float getX(float xx) {
-      xx = this.characterX + this.offsetX - this.characterWidth * 0.16;
-      return xx;
-  }
-  
-  // Method to update the character
-  protected void update() {
-    if (this.characterY < height - 100) {
-      this.velocityY += this.gravity;
-      this.characterY += this.velocityY;
-    } else {
-      this.velocityY = 0;
-      this.characterY = height - 100;
-    }
-    
-    // Check if the character has hit a boundary
-    if (this.characterX < this.characterWidth * 0.2) {
-      if (this.velocityX > 0) {
-        this.characterX += this.velocityX; 
-      }
-    } else if (this.characterX > width - this.characterWidth * 0.2) {
-      if (this.velocityX < 0) {
-        this.characterX += this.velocityX;
-      }
-    } else {
-      this.characterX += this.velocityX;
-    }
-    
-    this.velocityX = 0;
-    
-    if (game.scene == 4) {
-      boolean isInHitbox = false;
-      
-      for (InfernoPlatform platform : infernoLevel) {
-        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
-          this.velocityY = 0;
-          this.velocityX = 0;
-          
-          isInHitbox = true;
-          
-          break;
-        }
-      }
-      
-      if (isInHitbox) {
-        this.gravity = 0; 
-      } else {
-        this.gravity = 2; 
-      }
-    } else if (game.scene == 5) {
-      boolean isInHitbox = false;
-      
-      for (GlacierPlatform platform : glacierLevel) {
-        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
-          this.velocityY = 0;
-          this.velocityX = 0;
-          
-          isInHitbox = true;
-          
-          break;
-        }
-      }
-      
-      if (isInHitbox) {
-        this.gravity = 0; 
-      } else {
-        this.gravity = 2; 
-      }
-    } else if (game.scene == 6) {
-      boolean isInHitbox = false;
-      
-      for (ForestPlatform platform : forestLevel) {
-        if (this.characterY > platform.hitboxY && this.characterY < platform.hitboxY + platform.heightPlatform && this.characterX > platform.hitboxX && this.characterX < platform.hitboxX + platform.widthPlatform) {
-          this.velocityY = 0;
-          this.velocityX = 0;
-          
-          isInHitbox = true;
-          
-          break;
-        }
-      }
-      
-      if (isInHitbox) {
-        this.gravity = 0; 
-      } else {
-        this.gravity = 2; 
-      }
-    }
-  }
-  
-  // Method to jump
-  protected void jump() {
-    if (this.characterY == height - 100) {
-      this.characterY = height - 101;
-      this.velocityY = -37.5;
-    }
-  }
-  
-  // Method to move the character
-  protected void move(String direction) {
-    if (direction == "left") {
-      this.velocityX -= 10;
-    } else if (direction == "right") {
-      this.velocityX += 10;
-    }
     
     this.direction = direction;
+    
+    this.team = team;
+    
+    this.groundHeight = 50;
+    this.movementSpeed = 15;
+    this.jumpSpeed = -30;
+  }
+  
+  public void display() {
+    noStroke();
+    
+    if (this.team == "blue") {
+      fill(50, 50, 255); 
+    } else if (this.team == "red") {
+      fill(255, 50, 50); 
+    }
+    
+    rect(characterX, characterY, characterWidth, characterHeight);
+    
+    this.update();
+  }
+  
+  private void update() {
+    if (this.characterY + this.characterHeight != height - 50) {
+      this.velocityY += this.gravity; 
+    }
+    
+    if (this.characterY + this.velocityY + this.characterHeight > height - 50) {
+      this.characterY = height - this.groundHeight - this.characterHeight;
+      this.velocityY = 0;
+    } else {
+      this.characterY += this.velocityY; 
+    }
+  }
+  
+  public void jump() {
+    if (this.characterY + this.characterHeight == height - 50) {
+      this.velocityY = -30;
+      this.characterY += velocityY;
+    }
+  };
+  
+  public void move(String direction) {
+    if (direction == "left") {
+      this.characterX -= this.movementSpeed;
+    } else if (direction == "right") {
+      this.characterX += this.movementSpeed;
+    }
   }
 }
