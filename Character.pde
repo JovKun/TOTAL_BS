@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Character {
   
   // Character variables
@@ -17,6 +19,8 @@ class Character {
   private int groundHeight;
   private int movementSpeed;
   private int jumpSpeed;
+  
+  private ArrayList<Projectile> projectileArray;
   
   // Character constructor
   public Character(int characterX, int characterY, String direction, String team) {
@@ -39,6 +43,8 @@ class Character {
     this.groundHeight = 50;
     this.movementSpeed = 15;
     this.jumpSpeed = -30;
+    
+    this.projectileArray = new ArrayList<Projectile>();
   }
   
   // Method to display the characters
@@ -51,23 +57,28 @@ class Character {
       fill(255, 50, 50); 
     }
     
-    rect(characterX, characterY, characterWidth, characterHeight);
+    rect(this.characterX, this.characterY, this.characterWidth, this.characterHeight);
+    
+    for (int projectileIndex = 0; projectileIndex < this.projectileArray.size(); projectileIndex++) {
+      this.projectileArray.get(projectileIndex).display();
+    }
     
     this.update();
   }
   
   // Method to update the characters
   private void update() {
-    if (this.characterY + this.characterHeight != height - 50) {
-      this.velocityY += this.gravity; 
-    }
     
+    // Update the y value
+    this.velocityY += this.gravity; 
+    
+    // Only update characterY if character is above the ground, if not, set velocityY to 0
     if (this.characterY + this.velocityY + this.characterHeight > height - 50) {
       this.characterY = height - this.groundHeight - this.characterHeight;
       this.velocityY = 0;
-    } else {
-      this.characterY += this.velocityY; 
     }
+    
+    this.characterY += this.velocityY;
   }
   
   // Method to make the characters jump
@@ -76,14 +87,28 @@ class Character {
       this.velocityY = -30;
       this.characterY += velocityY;
     }
-  };
+  }
   
   // Method to make the characters move in either direction
   public void move(String direction) {
     if (direction == "left") {
-      this.characterX -= this.movementSpeed;
+      if (this.characterX > 0) {
+        this.characterX -= this.movementSpeed;
+      } else {
+        this.characterX = 0; 
+      }
     } else if (direction == "right") {
-      this.characterX += this.movementSpeed;
+      if (this.characterX < width - this.characterWidth) {
+        this.characterX += this.movementSpeed; 
+      } else {
+        this.characterX = width - this.characterWidth;
+      }
     }
+    
+    this.direction = direction;
+  }
+  
+  public void shoot() {
+    projectileArray.add(new Projectile(this.characterX + this.characterWidth / 2, this.characterY + this.characterHeight / 3, this.direction, this.team));
   }
 }
