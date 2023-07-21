@@ -1,7 +1,7 @@
 // Initialize the scene to the main scene
 int scene = 0;
 
-// The characters!
+// Declare the players
 Character player1, player2;
 
 // Booleans to check the character action keys
@@ -13,6 +13,7 @@ void setup() {
   fullScreen();
   frameRate(60);
   
+  // Initialize the characters
   player1 = new Character(25, 50, "right", "red");
   player2 = new Character(width - 75, 50, "left", "blue");
 }
@@ -25,20 +26,25 @@ void draw() {
   rect(0, height - 50, width, 50);
   
   if (scene == 0) {
+    
+    // Colour the button based on if the mouse if hovering over it or not
     if (mouseX > width / 2 - 150 && mouseX < width / 2 + 150 && mouseY > height / 2 - 100 && mouseY < height / 2 + 100) {
       fill(80);
     } else {
       fill(100); 
     }
     
+    // Draw the button
     rect(width / 2 - 150, height / 2 - 100, 300, 200);
     
+    // Draw the text inside the button
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(100);
     text("PLAY", width / 2, height / 2 - 10);
   } else if (scene == 1) {
-    // Here is your character!
+    
+    // Draw the characters
     player1.display();
     player2.display();
     
@@ -69,6 +75,7 @@ void draw() {
   }
 }
 
+// Method to determine any presses on the "play" button
 void mousePressed() {
   if (scene == 0) {
     if (mouseX > width / 2 - 150 && mouseX < width / 2 + 150 && mouseY > height / 2 - 100 && mouseY < height / 2 + 100) {
