@@ -4,6 +4,7 @@ class Character {
   
   // Character variables
   private int health;
+  private boolean isDead;
   
   private int characterX, characterY;
   private int characterWidth, characterHeight;
@@ -24,10 +25,10 @@ class Character {
   // Character constructor
   public Character(int characterX, int characterY, String direction, String team) {
     this.health = 5;
+    this.isDead = false;
     
     this.characterX = characterX;
     this.characterY = characterY;
-    
     this.characterWidth = 50;
     this.characterHeight = 80;
     
@@ -46,7 +47,7 @@ class Character {
   }
   
   // Method to display the characters
-  public void display() {
+  public void display(Character otherPlayer) {
     noStroke();
     
     // Give the players the team colours
@@ -59,24 +60,60 @@ class Character {
     // Draw the player
     rect(this.characterX, this.characterY, this.characterWidth, this.characterHeight);
     
-    // Update the projectiles
-    for (int projectileIndex = 0; projectileIndex < this.projectileArray.size(); projectileIndex++) {
-      
-      // Check if any projectiles has shot out of the screen
-      if (this.projectileArray.get(projectileIndex).getX() < 0 || this.projectileArray.get(projectileIndex).getX() > width) {
-        this.projectileArray.remove(projectileIndex);
-        
-        projectileIndex--;
-        
-        continue;
-      }
-      
-      // Display each and every projectile
-      this.projectileArray.get(projectileIndex).display();
+    if (this.health <= 0) {
+      this.isDead = true; 
     }
     
-    // Update the characters themselves
-    this.update();
+    // Display the health bar
+    if (this.team == "red") {
+      fill(255, 50, 50);
+      
+      for (int currentHealth = 0; currentHealth < this.health; currentHealth++) {
+        rect(25, currentHealth * 40 + 25, 25, 25);
+      }
+    } else if (this.team == "blue") {
+      fill(50, 50, 255);
+      
+      for (int currentHealth = 0; currentHealth < this.health; currentHealth++) {
+        rect(width - 50, currentHealth * 40 + 25, 25, 25);
+      }
+    }
+    
+    if ((!this.isDead && !otherPlayer.ifDead()) || (this.isDead && !otherPlayer.ifDead())) {
+      
+      // Update the projectiles
+      for (int projectileIndex = 0; projectileIndex < this.projectileArray.size(); projectileIndex++) {
+        
+        Projectile currentProjectile = this.projectileArray.get(projectileIndex);
+        
+        // Check if any projectiles has hit the other player
+        if (currentProjectile.getX() - 7.5 > otherPlayer.getX() && currentProjectile.getX() + 7.5 < otherPlayer.getX() + this.characterWidth &&
+            currentProjectile.getY() - 7.5 > otherPlayer.getY() && currentProjectile.getY() + 7/5 < otherPlayer.getY() + this.characterHeight) {
+          otherPlayer.takeDamage();
+          
+          this.projectileArray.remove(projectileIndex);
+          
+          projectileIndex--;
+          
+          continue;
+        }
+        
+        // Check if any projectiles has shot out of the screen
+        if (currentProjectile.getX() < 0 || currentProjectile.getX() > width) {
+          this.projectileArray.remove(projectileIndex);
+          
+          projectileIndex--;
+          
+          continue;
+        }
+        
+        // Display each and every projectile
+        this.projectileArray.get(projectileIndex).display();
+      }
+      
+      // Update the characters themselves
+      this.update();  
+    }
   }
   
   // Method to update the characters
@@ -97,7 +134,7 @@ class Character {
   // Method to make the characters jump
   public void jump() {
     if (this.characterY + this.characterHeight == height - 50) {
-      this.velocityY = -30;
+      this.velocityY = this.jumpSpeed;
       this.characterY += velocityY;
     }
   }
@@ -131,6 +168,11 @@ class Character {
     projectileArray.add(new Projectile(this.characterX + this.characterWidth / 2, this.characterY + this.characterHeight / 3, this.direction, this.team));
   }
   
+  // Method to take damage
+  public void takeDamage() {
+    this.health--;
+  }
+  
   // Method to get the X coordinate of the top-left of the character
   public int getX() {
     return this.characterX;
@@ -139,5 +181,17 @@ class Character {
   // Method to get the Y coordiante of the top-left of the character
   public int getY() {
     return this.characterY; 
+  }
+  
+  public boolean ifDead() {
+    return this.isDead; 
+  }
+  
+  public void setVelocityY(int velocityY) {
+    this.velocityY = velocityY; 
+  }
+  
+  public void setGroundHeight(int groundHeight) {
+    this.groundHeight = groundHeight; 
   }
 }

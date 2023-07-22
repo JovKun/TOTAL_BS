@@ -8,6 +8,8 @@ Character player1, player2;
 boolean player1Jump, player1Left, player1Right = false;
 boolean player2Jump, player2Left, player2Right = false;
 
+boolean deathAnimationPlayed = false;
+
 // Setup the screen and framerate
 void setup() {
   fullScreen();
@@ -44,34 +46,62 @@ void draw() {
     text("PLAY", width / 2, height / 2 - 10);
   } else if (scene == 1) {
     
+    // Only run this code if the game is still running
+    if (!player1.ifDead() && !player2.ifDead()) {
+      
+      // Do the character actions based on which keys are pressed
+      if (player1Jump) {
+        player1.jump();
+      }
+      
+      if (player1Left) {
+        player1.move("left"); 
+      }
+      
+      if (player1Right) {
+        player1.move("right"); 
+      }
+      
+      if (player2Jump) {
+        player2.jump();
+      }
+      
+      if (player2Left) {
+        player2.move("left"); 
+      }
+      
+      if (player2Right) {
+        player2.move("right"); 
+      }
+    } else {
+      fill(200);
+      textAlign(CENTER, CENTER);
+      textSize(100);
+      
+      if (player1.ifDead()) {
+        if (!deathAnimationPlayed) {
+          player1.setVelocityY(-20);
+          player1.setGroundHeight(-100);
+          
+          deathAnimationPlayed = true;
+        }
+        
+        text("RED WINS", width / 2, height / 2 - 10);
+      } else if (player2.ifDead()) {
+        if (!deathAnimationPlayed) {
+          player2.setVelocityY(-20);
+          player2.setGroundHeight(-100);
+          
+          deathAnimationPlayed = true;
+        }
+        
+        text("RED WINS", width / 2, height / 2 - 10);
+      }
+    }
+    
     // Draw the characters
-    player1.display();
-    player2.display();
-    
-    // Do the character actions based on which keys are pressed
-    if (player1Jump) {
-      player1.jump();
-    }
-    
-    if (player1Left) {
-      player1.move("left"); 
-    }
-    
-    if (player1Right) {
-      player1.move("right"); 
-    }
-    
-    if (player2Jump) {
-      player2.jump();
-    }
-    
-    if (player2Left) {
-      player2.move("left"); 
-    }
-    
-    if (player2Right) {
-      player2.move("right"); 
-    }
+    player1.display(player2);
+    player2.display(player1);
   }
 }
 
@@ -91,7 +121,9 @@ void keyPressed() {
   } else if (key == 'a') {
     player1Left = true;
   } else if (key == 's') {
-    player1.shoot();
+    if (!player1.ifDead() && !player2.ifDead()) {
+      player1.shoot();  
+    }
   } else if (key == 'd') {
     player1Right = true; 
   }
@@ -102,7 +134,9 @@ void keyPressed() {
     } else if (keyCode == LEFT) {
       player2Left = true;
     } else if (keyCode == DOWN) {
-      player2.shoot();
+      if (!player1.ifDead() && !player2.ifDead()) {
+        player2.shoot(); 
+      }
     } else if (keyCode == RIGHT) {
       player2Right = true;  
     }
