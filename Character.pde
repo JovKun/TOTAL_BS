@@ -79,7 +79,8 @@ class Character {
       }
     }
     
-    if ((!this.isDead && !otherPlayer.ifDead()) || (this.isDead && !otherPlayer.ifDead())) {
+    // Check if the opponent is still alive
+    if (!otherPlayer.ifDead()) {
       
       // Update the projectiles
       for (int projectileIndex = 0; projectileIndex < this.projectileArray.size(); projectileIndex++) {
@@ -123,7 +124,7 @@ class Character {
     this.velocityY += this.gravity; 
     
     // Only update characterY if character is above the ground, if not, set velocityY to 0
-    if (this.characterY + this.velocityY + this.characterHeight > height - 50) {
+    if (this.characterY + this.velocityY + this.characterHeight > height - this.groundHeight) {
       this.characterY = height - this.groundHeight - this.characterHeight;
       this.velocityY = 0;
     }

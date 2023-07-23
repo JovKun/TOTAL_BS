@@ -78,6 +78,7 @@ void draw() {
       textAlign(CENTER, CENTER);
       textSize(100);
       
+      // Play the death animation for the character that died
       if (player1.ifDead()) {
         if (!deathAnimationPlayed) {
           player1.setVelocityY(-20);
@@ -86,7 +87,8 @@ void draw() {
           deathAnimationPlayed = true;
         }
         
-        text("RED WINS", width / 2, height / 2 - 10);
+        // Game over text
+        text("BLUE WINS", width / 2, height / 2 - 10);
       } else if (player2.ifDead()) {
         if (!deathAnimationPlayed) {
           player2.setVelocityY(-20);
@@ -95,6 +97,7 @@ void draw() {
           deathAnimationPlayed = true;
         }
         
+        // Game over text
         text("RED WINS", width / 2, height / 2 - 10);
       }
     }
