@@ -1,8 +1,14 @@
+// Import necessary modules
+import java.util.ArrayList;
+
 // Initialize the scene to the main scene
 int scene = 0;
 
 // Declare the players
 Character player1, player2;
+
+// Declare platforms and the platform array
+ArrayList<Platform> platformArray = new ArrayList<Platform>();
 
 // Booleans to check the character action keys
 boolean player1Jump, player1Left, player1Right = false;
@@ -15,9 +21,17 @@ void setup() {
   fullScreen();
   frameRate(60);
   
+  // Initialize the level
+  platformArray.add(new Platform(width / 2 - 250, height - 300, 500));
+  platformArray.add(new Platform(0, height - 550, 600));
+  platformArray.add(new Platform(width - 600, height - 550, 600));
+  platformArray.add(new Platform(width / 2 - 125, height - 700, 250));
+  platformArray.add(new Platform(200, height - 900, 500));
+  platformArray.add(new Platform(width - 700, height - 900, 500));
+  
   // Initialize the characters
-  player1 = new Character(25, 50, "right", "red");
-  player2 = new Character(width - 75, 50, "left", "blue");
+  player1 = new Character(25, 50, "right", "red", platformArray);
+  player2 = new Character(width - 75, 50, "left", "blue", platformArray);
 }
 
 void draw() {
@@ -44,7 +58,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(100);
     text("PLAY", width / 2, height / 2 - 10);
-  } else if (scene == 1) {
+  } else {
     
     // Only run this code if the game is still running
     if (!player1.ifDead() && !player2.ifDead()) {
@@ -88,6 +102,8 @@ void draw() {
         }
         
         // Game over text
+        fill(35, 35, 255);
+        
         text("BLUE WINS", width / 2, height / 2 - 10);
       } else if (player2.ifDead()) {
         if (!deathAnimationPlayed) {
@@ -98,6 +114,8 @@ void draw() {
         }
         
         // Game over text
+        fill(255, 35, 35);
+        
         text("RED WINS", width / 2, height / 2 - 10);
       }
     }
@@ -105,6 +123,11 @@ void draw() {
     // Draw the characters
     player1.display(player2);
     player2.display(player1);
+    
+    // Draw all the platforms
+    for (int platformIndex = 0; platformIndex < platformArray.size(); platformIndex++) {
+      platformArray.get(platformIndex).display(); 
+    }
   }
 }
 

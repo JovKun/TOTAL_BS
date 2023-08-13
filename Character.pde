@@ -1,3 +1,4 @@
+// Import necessary modules
 import java.util.ArrayList;
 
 class Character {
@@ -20,10 +21,13 @@ class Character {
   private int movementSpeed;
   private int jumpSpeed;
   
+  private boolean inAir;
+  
   private ArrayList<Projectile> projectileArray;
+  private ArrayList<Platform> platformArray;
   
   // Character constructor
-  public Character(int characterX, int characterY, String direction, String team) {
+  public Character(int characterX, int characterY, String direction, String team, ArrayList<Platform> platformArray) {
     this.health = 5;
     this.isDead = false;
     
@@ -43,7 +47,10 @@ class Character {
     this.movementSpeed = 15;
     this.jumpSpeed = -30;
     
+    this.inAir = true;
+    
     this.projectileArray = new ArrayList<Projectile>();
+    this.platformArray = platformArray;
   }
   
   // Method to display the characters
@@ -80,16 +87,16 @@ class Character {
     }
     
     // Check if the opponent is still alive
-    if (!otherPlayer.ifDead()) {
+    if (!this.ifDead() && !otherPlayer.ifDead()) {
       
-      // Update the projectiles
+      // Loop through all the projectiles and update them
       for (int projectileIndex = 0; projectileIndex < this.projectileArray.size(); projectileIndex++) {
         
         Projectile currentProjectile = this.projectileArray.get(projectileIndex);
         
         // Check if any projectiles has hit the other player
         if (currentProjectile.getX() - 7.5 > otherPlayer.getX() && currentProjectile.getX() + 7.5 < otherPlayer.getX() + this.characterWidth &&
-            currentProjectile.getY() - 7.5 > otherPlayer.getY() && currentProjectile.getY() + 7/5 < otherPlayer.getY() + this.characterHeight) {
+            currentProjectile.getY() - 7.5 > otherPlayer.getY() && currentProjectile.getY() + 7.5 < otherPlayer.getY() + this.characterHeight) {
           otherPlayer.takeDamage();
           
           this.projectileArray.remove(projectileIndex);
@@ -106,6 +113,31 @@ class Character {
           projectileIndex--;
           
           continue;
+        }
+        
+        // Boolean to store whether this projectile has hit any platform
+        boolean hitPlatform = false;
+        
+        // Loop through all platforms until it finds that it has hit one, or if it missed all of them
+        for (int platformIndex = 0; platformIndex < this.platformArray.size(); platformIndex++) {
+          
+          Platform currentPlatform = this.platformArray.get(platformIndex);
+          
+          if (currentProjectile.getX() - 7.5 > currentPlatform.getX() && currentProjectile.getX() + 7.5 < currentPlatform.getX() + currentPlatform.getWidth() &&
+              currentProjectile.getY() - 7.5 > currentPlatform.getY() && currentProjectile.getY() + 7.5 < currentPlatform.getY() + 50) {
+            this.projectileArray.remove(projectileIndex);
+            
+            projectileIndex--;
+            
+            hitPlatform = true;
+            
+            break;
+          }
+        }
+        
+        // Skip the display function if it has hit any platforms
+        if (hitPlatform) {
+          continue; 
         }
         
         // Display each and every projectile
@@ -127,6 +159,39 @@ class Character {
     if (this.characterY + this.velocityY + this.characterHeight > height - this.groundHeight) {
       this.characterY = height - this.groundHeight - this.characterHeight;
       this.velocityY = 0;
+      
+      this.inAir = false;
+    } else {
+      
+      if (!this.isDead) {
+        
+        // Loop through all the platforms since the character is not on the ground
+        for (int platformIndex = 0; platformIndex < this.platformArray.size(); platformIndex++) {
+          
+          Platform currentPlatform = this.platformArray.get(platformIndex);
+          
+          // Check if it hits the platform
+          if (this.characterX + this.characterWidth > currentPlatform.getX() && this.characterX < currentPlatform.getX() + currentPlatform.getWidth() &&
+              this.characterY + this.characterHeight + this.velocityY > currentPlatform.getY() && this.characterY + this.velocityY < currentPlatform.getY() + 50) {
+            
+            if (this.velocityY < 0) {
+              this.characterY = currentPlatform.getY() + 50;
+              this.velocityY = 0;
+              
+              break;
+            }
+            
+            if (this.velocityY > 0) {
+              this.characterY = currentPlatform.getY() - this.characterHeight;
+              this.velocityY = 0;
+              
+              this.inAir = false;
+              
+              break;
+            }
+          } 
+        }
+      } 
     }
     
     this.characterY += this.velocityY;
@@ -134,9 +199,11 @@ class Character {
   
   // Method to make the characters jump
   public void jump() {
-    if (this.characterY + this.characterHeight == height - 50) {
+    if (!this.inAir) {
       this.velocityY = this.jumpSpeed;
       this.characterY += velocityY;
+      
+      this.inAir = true;
     }
   }
   
@@ -184,14 +251,17 @@ class Character {
     return this.characterY; 
   }
   
+  // Method to return whether the character is dead or not
   public boolean ifDead() {
     return this.isDead; 
   }
   
+  // Method to set the Y velocity of the character
   public void setVelocityY(int velocityY) {
     this.velocityY = velocityY; 
   }
   
+  // Method to change the groundHeight of the character
   public void setGroundHeight(int groundHeight) {
     this.groundHeight = groundHeight; 
   }
