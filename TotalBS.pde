@@ -58,7 +58,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(100);
     text("PLAY", width / 2, height / 2 - 10);
-  } else {
+  } else if (scene == 1) {
     
     // Only run this code if the game is still running
     if (!player1.ifDead() && !player2.ifDead()) {
@@ -92,32 +92,25 @@ void draw() {
       textAlign(CENTER, CENTER);
       textSize(100);
       
-      // Play the death animation for the character that died
+      // Show death screen
       if (player1.ifDead()) {
-        if (!deathAnimationPlayed) {
-          player1.setVelocityY(-20);
-          player1.setGroundHeight(-100);
-          
-          deathAnimationPlayed = true;
-        }
-        
+    
         // Game over text
         fill(35, 35, 255);
         
         text("BLUE WINS", width / 2, height / 2 - 10);
       } else if (player2.ifDead()) {
-        if (!deathAnimationPlayed) {
-          player2.setVelocityY(-20);
-          player2.setGroundHeight(-100);
-          
-          deathAnimationPlayed = true;
-        }
-        
+       
         // Game over text
         fill(255, 35, 35);
         
         text("RED WINS", width / 2, height / 2 - 10);
       }
+      
+      fill(100);
+      textSize(40);
+      
+      text("PRESS \"R\" TO RETRY", width / 2, height / 2 + 90);
     }
     
     // Draw the characters
@@ -166,6 +159,13 @@ void keyPressed() {
     } else if (keyCode == RIGHT) {
       player2Right = true;  
     }
+  }
+  
+  if (key == 'r') {
+    if (player1.ifDead() || player2.ifDead()) {
+      player1.reset();
+      player2.reset();
+    } 
   }
 }
 

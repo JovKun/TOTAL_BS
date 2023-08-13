@@ -8,12 +8,14 @@ class Character {
   private boolean isDead;
   
   private int characterX, characterY;
+  private int startCharacterX, startCharacterY;
   private int characterWidth, characterHeight;
   
   private float gravity;
   private float velocityY;
   
   private String direction;
+  private String startDirection;
   
   private String team;
   
@@ -33,6 +35,8 @@ class Character {
     
     this.characterX = characterX;
     this.characterY = characterY;
+    this.startCharacterX = characterX;
+    this.startCharacterY = characterY;
     this.characterWidth = 50;
     this.characterHeight = 80;
     
@@ -40,6 +44,7 @@ class Character {
     this.velocityY = 0;
     
     this.direction = direction;
+    this.startDirection = direction;
     
     this.team = team;
     
@@ -174,20 +179,30 @@ class Character {
           if (this.characterX + this.characterWidth > currentPlatform.getX() && this.characterX < currentPlatform.getX() + currentPlatform.getWidth() &&
               this.characterY + this.characterHeight + this.velocityY > currentPlatform.getY() && this.characterY + this.velocityY < currentPlatform.getY() + 50) {
             
-            if (this.velocityY < 0) {
-              this.characterY = currentPlatform.getY() + 50;
-              this.velocityY = 0;
+            // Check if the character hit the platform from the side
+            if (this.characterX + this.characterWidth < currentPlatform.getX() + 16) {
+              this.characterX = currentPlatform.getX() - this.characterWidth;
+            } else if (this.characterX > currentPlatform.getX() + currentPlatform.getWidth() - 16) {
+              this.characterX = currentPlatform.getX() + currentPlatform.getWidth();
+            } else {
               
-              break;
-            }
-            
-            if (this.velocityY > 0) {
-              this.characterY = currentPlatform.getY() - this.characterHeight;
-              this.velocityY = 0;
+              // The character just jumped, so it must have hit the bottom
+              if (this.velocityY < 0) {
+                this.characterY = currentPlatform.getY() + 50;
+                this.velocityY = 0;
+                
+                break;
+              }
               
-              this.inAir = false;
-              
-              break;
+              // The character is falling, so it must have hit the top
+              if (this.velocityY > 0) {
+                this.characterY = currentPlatform.getY() - this.characterHeight;
+                this.velocityY = 0;
+                
+                this.inAir = false;
+                
+                break;
+              } 
             }
           } 
         }
@@ -256,13 +271,36 @@ class Character {
     return this.isDead; 
   }
   
+  // Method to set the X coordinate of the top-left of the character
+  public void setX(int characterX) {
+    this.characterX = characterX; 
+  }
+  
+  // Method to set the Y coordinate of the top-left of the character
+  public void setY (int characterY) {
+    this.characterY = characterY; 
+  }
+  
   // Method to set the Y velocity of the character
-  public void setVelocityY(int velocityY) {
+  public void setVelocityY(float velocityY) {
     this.velocityY = velocityY; 
   }
   
-  // Method to change the groundHeight of the character
+  // Method to set the groundHeight of the character
   public void setGroundHeight(int groundHeight) {
     this.groundHeight = groundHeight; 
+  }
+  
+  // Method to reset the game
+  public void reset() {
+    this.isDead = false;
+    this.health = 5;
+    
+    this.characterX = this.startCharacterX;
+    this.characterY = this.startCharacterY;
+    
+    this.velocityY = 0;
+    
+    this.projectileArray.clear();
   }
 }
