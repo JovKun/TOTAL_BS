@@ -166,47 +166,47 @@ class Character {
       this.velocityY = 0;
       
       this.inAir = false;
+    } else if (this.characterY + this.velocityY < 0) {
+      this.characterY = 0;
+      this.velocityY = 0;
     } else {
-      
-      if (!this.isDead) {
         
-        // Loop through all the platforms since the character is not on the ground
-        for (int platformIndex = 0; platformIndex < this.platformArray.size(); platformIndex++) {
+      // Loop through all the platforms since the character is not on the ground
+      for (int platformIndex = 0; platformIndex < this.platformArray.size(); platformIndex++) {
           
-          Platform currentPlatform = this.platformArray.get(platformIndex);
+        Platform currentPlatform = this.platformArray.get(platformIndex);
           
-          // Check if it hits the platform
-          if (this.characterX + this.characterWidth > currentPlatform.getX() && this.characterX < currentPlatform.getX() + currentPlatform.getWidth() &&
-              this.characterY + this.characterHeight + this.velocityY > currentPlatform.getY() && this.characterY + this.velocityY < currentPlatform.getY() + 50) {
+        // Check if it hits the platform
+        if (this.characterX + this.characterWidth > currentPlatform.getX() && this.characterX < currentPlatform.getX() + currentPlatform.getWidth() &&
+            this.characterY + this.characterHeight + this.velocityY > currentPlatform.getY() && this.characterY + this.velocityY < currentPlatform.getY() + 50) {
             
-            // Check if the character hit the platform from the side
-            if (this.characterX + this.characterWidth < currentPlatform.getX() + 16) {
-              this.characterX = currentPlatform.getX() - this.characterWidth;
-            } else if (this.characterX > currentPlatform.getX() + currentPlatform.getWidth() - 16) {
-              this.characterX = currentPlatform.getX() + currentPlatform.getWidth();
-            } else {
+          // Check if the character hit the platform from the side
+          if (this.characterX + this.characterWidth < currentPlatform.getX() + 16) {
+            this.characterX = currentPlatform.getX() - this.characterWidth;
+          } else if (this.characterX > currentPlatform.getX() + currentPlatform.getWidth() - 16) {
+            this.characterX = currentPlatform.getX() + currentPlatform.getWidth();
+          } else {
               
-              // The character just jumped, so it must have hit the bottom
-              if (this.velocityY < 0) {
-                this.characterY = currentPlatform.getY() + 50;
-                this.velocityY = 0;
-                
-                break;
-              }
+            // The character just jumped, so it must have hit the bottom
+            if (this.velocityY < 0) {
+              this.characterY = currentPlatform.getY() + 50;
+              this.velocityY = 0;
               
-              // The character is falling, so it must have hit the top
-              if (this.velocityY > 0) {
-                this.characterY = currentPlatform.getY() - this.characterHeight;
-                this.velocityY = 0;
-                
-                this.inAir = false;
-                
-                break;
-              } 
+              break;
             }
-          } 
-        }
-      } 
+            
+            // The character is falling, so it must have hit the top
+            if (this.velocityY > 0) {
+              this.characterY = currentPlatform.getY() - this.characterHeight;
+              this.velocityY = 0;
+              
+              this.inAir = false;
+              
+              break;
+            } 
+          }
+        } 
+      }
     }
     
     this.characterY += this.velocityY;
@@ -281,16 +281,6 @@ class Character {
     this.characterY = characterY; 
   }
   
-  // Method to set the Y velocity of the character
-  public void setVelocityY(float velocityY) {
-    this.velocityY = velocityY; 
-  }
-  
-  // Method to set the groundHeight of the character
-  public void setGroundHeight(int groundHeight) {
-    this.groundHeight = groundHeight; 
-  }
-  
   // Method to reset the game
   public void reset() {
     this.isDead = false;
@@ -298,6 +288,8 @@ class Character {
     
     this.characterX = this.startCharacterX;
     this.characterY = this.startCharacterY;
+    
+    this.direction = this.startDirection;
     
     this.velocityY = 0;
     
